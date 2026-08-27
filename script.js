@@ -1,88 +1,126 @@
-/* =========================================
-   AURELIA GRAND
-   Main interaction layer
-========================================= */
-
-const navbar = document.getElementById("navbar");
-const menuBtn = document.getElementById("menuBtn");
-const mobileMenu = document.getElementById("mobileMenu");
-const toast = document.getElementById("toast");
-const modal = document.getElementById("availabilityModal");
-
-const checkin = document.getElementById("checkin");
-const checkout = document.getElementById("checkout");
-const guests = document.getElementById("guests");
-
-const summaryCheckin = document.getElementById("summaryCheckin");
-const summaryCheckout = document.getElementById("summaryCheckout");
-const summaryGuests = document.getElementById("summaryGuests");
+const $ = (selector) => document.querySelector(selector);
+const $$ = (selector) => document.querySelectorAll(selector);
 
 
-/* =========================================
-   NAVBAR
-========================================= */
+/* =========================
+   GLOBAL STATE
+========================= */
 
-window.addEventListener("scroll", () => {
-
-  if (window.scrollY > 30) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
-  }
-
-});
+const state = {
+  guests: 2,
+  roomPrice: 28000,
+  roomName: "Desert Suite",
+  extras: 0,
+  nights: 1
+};
 
 
-/* =========================================
-   MOBILE MENU
-========================================= */
+/* =========================
+   NAVIGATION
+========================= */
 
-menuBtn.addEventListener("click", () => {
-
-  mobileMenu.classList.toggle("open");
-
-});
-
-
-document.querySelectorAll(".mobile-menu a").forEach(link => {
-
-  link.addEventListener("click", () => {
-
-    mobileMenu.classList.remove("open");
-
+function scrollToSection(id){
+  document.getElementById(id)?.scrollIntoView({
+    behavior:"smooth"
   });
 
+  $("#mobileMenu")?.classList.remove("show");
+}
+
+window.addEventListener("scroll", () => {
+  $("#nav")?.classList.toggle("scrolled", window.scrollY > 40);
 });
 
 
-/* =========================================
-   SMOOTH SCROLL
-========================================= */
+/* =========================
+   MOBILE MENU
+========================= */
 
-function scrollToBooking(){
+$("#menuBtn")?.addEventListener("click", () => {
+  $("#mobileMenu").classList.toggle("show");
+});
 
-  document
-    .getElementById("booking")
-    .scrollIntoView({
-      behavior:"smooth",
-      block:"center"
-    });
+$$(".mobile-menu a").forEach(link => {
+  link.addEventListener("click", () => {
+    $("#mobileMenu").classList.remove("show");
+  });
+});
 
+
+/* =========================
+   TOAST
+========================= */
+
+let toastTimer;
+
+function showToast(message){
+
+  const toast = $("#toast");
+
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2200);
 }
 
 
-/* =========================================
+/* =========================
+   ROOM SELECTION
+========================= */
+
+function selectRoom(name, price){
+
+  state.roomName = name;
+  state.roomPrice = price;
+
+  $("#roomSelect").value = price;
+
+  updateEstimate();
+
+  scrollToSection("booking");
+
+  showToast(name + " selected");
+}
+
+
+/* =========================
+   GUEST CONTROL
+========================= */
+
+function changeGuests(amount){
+
+  state.guests += amount;
+
+  if(state.guests < 1){
+    state.guests = 1;
+  }
+
+  if(state.guests > 8){
+    state.guests = 8;
+    showToast("Maximum 8 guests");
+  }
+
+  $("#guestCount").textContent = state.guests;
+
+  updateEstimate();
+}
+
+
+/* =========================
    DATE SETUP
-========================================= */
+========================= */
 
 const today = new Date();
 
 const tomorrow = new Date(today);
 tomorrow.setDate(today.getDate() + 1);
 
-const afterTomorrow = new Date(today);
-afterTomorrow.setDate(today.getDate() + 2);
-
+const dayAfter = new Date(today);
+dayAfter.setDate(today.getDate() + 2);
 
 function formatDate(date){
 
@@ -90,229 +128,329 @@ function formatDate(date){
 
 }
 
+$("#checkin").min = formatDate(today);
+$("#checkin").value = formatDate(tomorrow);
 
-checkin.min = formatDate(today);
-checkout.min = formatDate(tomorrow);
-
-checkin.value = formatDate(tomorrow);
-checkout.value = formatDate(afterTomorrow);
+$("#checkout").min = formatDate(dayAfter);
+$("#checkout").value = formatDate(dayAfter);
 
 
-/* =========================================
-   DATE RELATION
-========================================= */
+/* =========================
+   NIGHT CALCULATOR
+========================= */
 
-checkin.addEventListener("change", () => {
+function calculateNights(){
 
-  const selected = new Date(checkin.value);
+  const checkin = $("#checkin").value;
+  const checkout = $("#checkout").value;
 
-  const nextDay = new Date(selected);
-  nextDay.setDate(selected.getDate() + 1);
-
-  checkout.min = formatDate(nextDay);
-
-  if (
-    !checkout.value ||
-    new Date(checkout.value) <= selected
-  ){
-
-    checkout.value = formatDate(nextDay);
-
+  if(!checkin || !checkout){
+    return 1;
   }
+
+  const start = new Date(checkin);
+  const end = new Date(checkout);
+
+  const difference =
+    (end - start) / (1000 * 60 * 60 * 24);
+
+  return Math.max(1, difference);
+}
+
+
+/* =========================
+   ROOM SELECT
+========================= */
+
+$("#roomSelect")?.addEventListener("change", function(){
+
+  state.roomPrice = Number(this.value);
+
+  state.roomName =
+    this.options[this.selectedIndex].text.split(" — ")[0];
+
+  updateEstimate();
 
 });
 
 
-/* =========================================
-   CHECK AVAILABILITY
-========================================= */
+/* =========================
+   DATE EVENTS
+========================= */
 
-function checkAvailability(){
+$("#checkin")?.addEventListener("change", () => {
 
-  if (!checkin.value || !checkout.value){
+  const checkin = new Date($("#checkin").value);
 
-    showToast("Select your dates first");
+  const nextDay = new Date(checkin);
 
-    return;
+  nextDay.setDate(checkin.getDate() + 1);
+
+  $("#checkout").min = formatDate(nextDay);
+
+  if(new Date($("#checkout").value) <= checkin){
+    $("#checkout").value = formatDate(nextDay);
+  }
+
+  updateEstimate();
+
+});
+
+
+$("#checkout")?.addEventListener("change", updateEstimate);
+
+
+/* =========================
+   EXTRAS
+========================= */
+
+$$(".extra").forEach(extra => {
+
+  extra.addEventListener("click", () => {
+
+    extra.classList.toggle("active");
+
+    state.extras =
+      [...$$(".extra.active")]
+      .reduce((sum, item) => {
+        return sum + Number(item.dataset.price);
+      }, 0);
+
+    updateEstimate();
+
+  });
+
+});
+
+
+/* =========================
+   LIVE ESTIMATE
+========================= */
+
+function updateEstimate(){
+
+  state.nights = calculateNights();
+
+  const roomTotal =
+    state.roomPrice * state.nights;
+
+  const extraTotal =
+    state.extras * state.nights;
+
+  const service =
+    Math.round((roomTotal + extraTotal) * 0.10);
+
+  const total =
+    roomTotal + extraTotal + service;
+
+
+  $("#estimateRoom").textContent =
+    state.roomName;
+
+  $("#estimateGuests").textContent =
+    state.guests + (state.guests === 1 ? " guest" : " guests");
+
+
+  const checkin = $("#checkin").value;
+  const checkout = $("#checkout").value;
+
+  if(checkin && checkout){
+
+    $("#estimateDates").textContent =
+      `${checkin} → ${checkout} · ${state.nights} night${state.nights > 1 ? "s" : ""}`;
 
   }
 
-  const inDate = new Date(checkin.value);
-  const outDate = new Date(checkout.value);
 
-  if (outDate <= inDate){
+  $("#roomPrice").textContent =
+    money(roomTotal);
 
-    showToast("Check-out must be after check-in");
+  $("#extrasPrice").textContent =
+    money(extraTotal);
 
-    return;
+  $("#servicePrice").textContent =
+    money(service);
 
-  }
+  $("#totalPrice").textContent =
+    money(total);
+}
 
-  summaryCheckin.textContent =
-    formatReadableDate(checkin.value);
 
-  summaryCheckout.textContent =
-    formatReadableDate(checkout.value);
+/* =========================
+   MONEY FORMAT
+========================= */
 
-  summaryGuests.textContent =
-    `${guests.value} Guest${guests.value === "1" ? "" : "s"}`;
+function money(value){
 
-  modal.classList.add("show");
-
-  document.body.classList.add("modal-open");
+  return "₹" +
+    Number(value).toLocaleString("en-IN");
 
 }
 
 
-/* =========================================
-   DATE DISPLAY
-========================================= */
+/* =========================
+   RESERVATION
+========================= */
 
-function formatReadableDate(value){
+function startReservation(){
 
-  const date = new Date(value + "T00:00:00");
+  updateEstimate();
 
-  return date.toLocaleDateString(
-    "en-IN",
-    {
-      day:"numeric",
-      month:"short",
-      year:"numeric"
+  $("#reservationModal").classList.add("show");
+
+}
+
+
+function confirmReservation(){
+
+  const name = $("#guestName").value.trim();
+  const email = $("#guestEmail").value.trim();
+
+  if(!name){
+
+    showToast("Please enter your name");
+
+    return;
+  }
+
+  if(!email || !email.includes("@")){
+
+    showToast("Enter a valid email");
+
+    return;
+  }
+
+
+  closeModal("reservationModal");
+
+  $("#successText").textContent =
+    `Thank you ${name}. Your request for ${state.roomName} has been captured. Estimated stay: ${money(getTotal())}.`;
+
+  $("#successModal").classList.add("show");
+
+}
+
+
+function getTotal(){
+
+  const roomTotal =
+    state.roomPrice * state.nights;
+
+  const extraTotal =
+    state.extras * state.nights;
+
+  const service =
+    Math.round((roomTotal + extraTotal) * .10);
+
+  return roomTotal + extraTotal + service;
+
+}
+
+
+/* =========================
+   MODALS
+========================= */
+
+function closeModal(id){
+
+  document.getElementById(id)?.classList.remove("show");
+
+}
+
+
+$$(".modal").forEach(modal => {
+
+  modal.addEventListener("click", event => {
+
+    if(event.target === modal){
+      modal.classList.remove("show");
     }
-  );
 
-}
-
-
-/* =========================================
-   MODAL
-========================================= */
-
-function closeModal(){
-
-  modal.classList.remove("show");
-
-  document.body.classList.remove("modal-open");
-
-}
-
-
-modal.addEventListener("click", event => {
-
-  if (event.target === modal){
-
-    closeModal();
-
-  }
+  });
 
 });
 
 
 document.addEventListener("keydown", event => {
 
-  if (event.key === "Escape"){
+  if(event.key === "Escape"){
 
-    closeModal();
+    $$(".modal.show").forEach(modal => {
+      modal.classList.remove("show");
+    });
 
   }
 
 });
 
 
-/* =========================================
-   ROOM SELECTION
-========================================= */
+/* =========================
+   GALLERY
+========================= */
 
-function selectRoom(roomName, price){
+function openGallery(title){
 
-  showToast(
-    `${roomName} selected · From ₹${price.toLocaleString("en-IN")}`
-  );
+  const modal = $("#galleryModal");
 
-  scrollToBooking();
+  $("#galleryTitle").textContent = title;
 
-}
+  const image = $("#galleryModalImage");
 
+  const backgrounds = {
 
-/* =========================================
-   RESERVATION CONTINUE
-========================================= */
+    "Arrival":
+      "linear-gradient(145deg,#9a8059,#29241c)",
 
-function continueReservation(){
+    "The Courtyard":
+      "linear-gradient(145deg,#7e8a6b,#272d23)",
 
-  closeModal();
+    "Pool":
+      "linear-gradient(145deg,#567484,#18242a)",
 
-  showToast(
-    "Reservation studio coming in the next build"
-  );
+    "Dinner":
+      "linear-gradient(145deg,#7c5b43,#241814)",
 
-}
+    "The Suite":
+      "linear-gradient(145deg,#a38c6a,#332a20)"
+  };
 
+  image.style.background =
+    backgrounds[title] ||
+    backgrounds["Arrival"];
 
-/* =========================================
-   TOAST
-========================================= */
-
-let toastTimer;
-
-function showToast(message){
-
-  toast.textContent = message;
-
-  toast.classList.add("show");
-
-  clearTimeout(toastTimer);
-
-  toastTimer = setTimeout(() => {
-
-    toast.classList.remove("show");
-
-  }, 2200);
+  modal.classList.add("show");
 
 }
 
 
-/* =========================================
-   REVEAL ON SCROLL
-========================================= */
+/* =========================
+   INITIAL UPDATE
+========================= */
 
-const revealElements =
-  document.querySelectorAll(
-    ".section-label, .intro-copy, .room-card, .experience-card, .feature-copy, .wellness-item"
-  );
+updateEstimate();
 
 
-const observer =
-  new IntersectionObserver(
-    entries => {
+/* =========================
+   SMALL UX POLISH
+========================= */
 
-      entries.forEach(entry => {
+document.querySelectorAll("a[href^='#']").forEach(link => {
 
-        if (entry.isIntersecting){
+  link.addEventListener("click", event => {
 
-          entry.target.style.opacity = "1";
-          entry.target.style.transform = "translateY(0)";
+    const target =
+      document.querySelector(link.getAttribute("href"));
 
-          observer.unobserve(entry.target);
+    if(target){
 
-        }
+      event.preventDefault();
 
+      target.scrollIntoView({
+        behavior:"smooth"
       });
 
-    },
-    {
-      threshold:.12
     }
-  );
 
-
-revealElements.forEach(element => {
-
-  element.style.opacity = "0";
-  element.style.transform = "translateY(18px)";
-  element.style.transition =
-    "opacity .7s ease, transform .7s ease";
-
-  observer.observe(element);
+  });
 
 });
