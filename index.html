@@ -1,696 +1,660 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#11100e">
+  <meta name="description" content="AURELIA — A private luxury hotel experience.">
+  <title>AURELIA — Stay Beyond Ordinary</title>
 
-          <button
-            class="gold-btn"
-            onclick="scrollToBooking()"
-          >
-            Reserve your stay
-            <span>↗</span>
-          </button>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 
-          <a href="#rooms" class="ghost-btn">
-            Explore Aurelia
-            <span>↓</span>
-          </a>
+  <link rel="stylesheet" href="style.css">
+</head>
 
-        </div>
+<body>
 
-      </div>
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="#" class="logo">AURELIA<span>•</span></a>
 
+      <nav class="desktop-nav">
+        <a href="#rooms">Rooms</a>
+        <a href="#experience">Experience</a>
+        <a href="#story">Story</a>
+        <a href="#gallery">Gallery</a>
+      </nav>
 
-      <!-- Floating location card -->
+      <button class="btn btn-light nav-book" onclick="scrollToSection('booking')">
+        Reserve a stay
+      </button>
 
-      <div class="hero-location reveal">
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    </div>
 
-        <div class="location-icon">⌖</div>
-
-        <div>
-          <small>THE AURELIA ADDRESS</small>
-          <strong>Where the city meets serenity</strong>
-        </div>
-
-      </div>
-
-
-      <div class="hero-scroll">
-        <span>SCROLL TO DISCOVER</span>
-        <i></i>
-      </div>
-
-    </section>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#rooms">Rooms</a>
+      <a href="#experience">Experience</a>
+      <a href="#story">Story</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#booking">Reserve</a>
+    </div>
+  </header>
 
 
-    <!-- ================= BOOKING BAR ================= -->
+  <!-- HERO -->
+  <main>
 
-    <section class="booking-section" id="booking">
+    <section class="hero">
+      <div class="hero-image"></div>
+      <div class="hero-overlay"></div>
 
-      <div class="container">
+      <div class="hero-content container">
+        <div class="eyebrow">PRIVATE HOTEL · RAJASTHAN</div>
 
-        <div class="booking-card">
+        <h1>
+          Stay somewhere<br>
+          <em>extraordinary.</em>
+        </h1>
 
-          <div class="booking-intro">
-            <span>YOUR STAY</span>
-            <strong>Find your room.</strong>
-          </div>
-
-          <div class="booking-field">
-            <label>Check in</label>
-            <input type="date" id="checkin">
-          </div>
-
-          <div class="booking-field">
-            <label>Check out</label>
-            <input type="date" id="checkout">
-          </div>
-
-          <div class="booking-field">
-            <label>Guests</label>
-
-            <select id="guests">
-              <option value="1">1 Guest</option>
-              <option value="2" selected>2 Guests</option>
-              <option value="3">3 Guests</option>
-              <option value="4">4 Guests</option>
-              <option value="5">5 Guests</option>
-              <option value="6">6 Guests</option>
-            </select>
-          </div>
-
-          <button
-            class="booking-btn"
-            onclick="checkAvailability()"
-          >
-            Check availability
-            <span>→</span>
-          </button>
-
-        </div>
-
-        <p class="booking-note">
-          Best available rates · Flexible cancellation on selected rooms
+        <p>
+          A secluded retreat shaped by warm stone, quiet mornings,
+          thoughtful hospitality and nights beneath an endless sky.
         </p>
 
+        <div class="hero-actions">
+          <button class="btn btn-gold" onclick="scrollToSection('booking')">
+            Plan your stay →
+          </button>
+
+          <button class="text-btn" onclick="scrollToSection('rooms')">
+            Explore rooms
+          </button>
+        </div>
       </div>
 
+      <div class="hero-bottom">
+        <span>27° 03' N</span>
+        <span>AURELIA ESTATE</span>
+        <span>OPEN ALL SEASONS</span>
+      </div>
+
+      <div class="scroll-indicator">
+        <span></span>
+        Scroll to explore
+      </div>
     </section>
 
 
-    <!-- ================= INTRO ================= -->
-
+    <!-- INTRO -->
     <section class="intro section">
-
       <div class="container intro-grid">
 
-        <div class="section-label">
-          01 / THE AURELIA
+        <div>
+          <span class="eyebrow">THE AURELIA PHILOSOPHY</span>
+          <h2>
+            Luxury is not<br>
+            <em>louder.</em>
+          </h2>
         </div>
 
         <div class="intro-copy">
-
-          <h2>
-            Designed for
-            <span>beautiful pauses.</span>
-          </h2>
-
-          <p>
-            Aurelia Grand brings together architecture,
-            hospitality and quiet luxury in one considered
-            destination.
+          <p class="large">
+            It is the morning light entering your room before the world wakes.
           </p>
 
           <p>
-            Every room, table and experience has been designed
-            around one idea — that your stay should feel less
-            like a visit and more like a memory.
+            Aurelia is designed around a simple idea: remove everything
+            unnecessary and make space for what matters. Slow breakfasts,
+            private courtyards, long evenings and service that knows when
+            to appear — and when not to.
           </p>
 
-          <a href="#experience" class="text-link">
-            Discover the Aurelia way →
-          </a>
-
+          <a href="#story" class="gold-link">Discover our story ↗</a>
         </div>
 
       </div>
-
     </section>
 
 
-    <!-- ================= ROOMS ================= -->
+    <!-- STATS -->
+    <section class="stats">
+      <div class="container stats-grid">
+        <div>
+          <strong>18</strong>
+          <span>Private suites</span>
+        </div>
 
-    <section class="rooms section" id="rooms">
+        <div>
+          <strong>01</strong>
+          <span>Private estate</span>
+        </div>
 
+        <div>
+          <strong>24/7</strong>
+          <span>Personal concierge</span>
+        </div>
+
+        <div>
+          <strong>★★★★★</strong>
+          <span>Guest experience</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ROOMS -->
+    <section class="section" id="rooms">
       <div class="container">
 
-        <div class="section-heading">
-
+        <div class="section-head">
           <div>
-            <div class="section-label">
-              02 / STAY
-            </div>
-
-            <h2>
-              Rooms with
-              <span>room to breathe.</span>
-            </h2>
+            <span class="eyebrow">THE COLLECTION</span>
+            <h2>Rooms made for<br><em>staying longer.</em></h2>
           </div>
 
           <p>
-            Thoughtfully designed spaces where natural textures,
-            generous proportions and quiet details come together.
+            Each suite has its own character, but every room shares
+            the same Aurelia standard.
           </p>
-
         </div>
-
 
         <div class="room-grid">
 
-          <article class="room-card room-large">
+          <article class="room-card room-main">
+            <div class="room-img room-img-1"></div>
 
-            <div class="room-image image-one"></div>
-
-            <div class="room-overlay"></div>
-
-            <div class="room-content">
-
-              <div class="room-tag">
-                SIGNATURE
-              </div>
-
-              <h3>The Aurelia Suite</h3>
-
+            <div class="room-info">
+              <span>01 · SIGNATURE</span>
+              <h3>Desert Suite</h3>
               <p>
-                78 m² · King bed · City view
+                Private courtyard · King bed · Sunset view
               </p>
 
               <div class="room-bottom">
-
-                <strong>
-                  From ₹18,500
-                  <small>/ night</small>
-                </strong>
-
-                <button onclick="selectRoom('The Aurelia Suite',18500)">
-                  View room →
+                <strong>₹28,000 <small>/ night</small></strong>
+                <button onclick="selectRoom('Desert Suite',28000)">
+                  Explore →
                 </button>
-
               </div>
-
             </div>
-
           </article>
 
-
           <article class="room-card">
+            <div class="room-img room-img-2"></div>
 
-            <div class="room-image image-two"></div>
-
-            <div class="room-overlay"></div>
-
-            <div class="room-content">
-
-              <div class="room-tag">
-                DELUXE
-              </div>
-
-              <h3>Grand Deluxe</h3>
-
+            <div class="room-info">
+              <span>02 · PRIVATE</span>
+              <h3>Garden Pavilion</h3>
               <p>
-                46 m² · King bed · Garden view
+                Garden access · Outdoor bath · King bed
               </p>
 
               <div class="room-bottom">
-
-                <strong>
-                  From ₹12,500
-                  <small>/ night</small>
-                </strong>
-
-                <button onclick="selectRoom('Grand Deluxe',12500)">
-                  View room →
+                <strong>₹34,000 <small>/ night</small></strong>
+                <button onclick="selectRoom('Garden Pavilion',34000)">
+                  Explore →
                 </button>
-
               </div>
-
             </div>
-
           </article>
 
-
           <article class="room-card">
+            <div class="room-img room-img-3"></div>
 
-            <div class="room-image image-three"></div>
-
-            <div class="room-overlay"></div>
-
-            <div class="room-content">
-
-              <div class="room-tag">
-                ESSENTIAL
-              </div>
-
-              <h3>Aurelia Room</h3>
-
+            <div class="room-info">
+              <span>03 · GRAND</span>
+              <h3>Royal Residence</h3>
               <p>
-                32 m² · King bed · Courtyard view
+                Private pool · Living room · Butler service
               </p>
 
               <div class="room-bottom">
-
-                <strong>
-                  From ₹9,500
-                  <small>/ night</small>
-                </strong>
-
-                <button onclick="selectRoom('Aurelia Room',9500)">
-                  View room →
+                <strong>₹52,000 <small>/ night</small></strong>
+                <button onclick="selectRoom('Royal Residence',52000)">
+                  Explore →
                 </button>
-
               </div>
-
             </div>
-
           </article>
 
         </div>
 
       </div>
-
     </section>
 
 
-    <!-- ================= EXPERIENCE ================= -->
-
-    <section class="experience section" id="experience">
-
+    <!-- EXPERIENCE -->
+    <section class="section dark-section" id="experience">
       <div class="container">
 
-        <div class="section-heading">
-
+        <div class="section-head light">
           <div>
-
-            <div class="section-label">
-              03 / EXPERIENCE
-            </div>
-
-            <h2>
-              More than
-              <span>a stay.</span>
-            </h2>
-
+            <span class="eyebrow">BEYOND THE ROOM</span>
+            <h2>Make the stay<br><em>the story.</em></h2>
           </div>
 
           <p>
-            From sunrise rituals to late-night conversations,
-            discover experiences designed around your pace.
+            Days at Aurelia are intentionally unstructured.
+            Choose a direction, or choose nothing at all.
           </p>
-
         </div>
-
 
         <div class="experience-grid">
 
           <article class="experience-card">
-
-            <div class="experience-icon">
-              01
-            </div>
-
-            <div>
-              <h3>Morning Ritual</h3>
-
-              <p>
-                Slow breakfasts, freshly brewed coffee
-                and the city waking beyond your window.
-              </p>
-            </div>
-
+            <div class="experience-number">01</div>
+            <div class="experience-icon">♨</div>
+            <h3>Ritual Spa</h3>
+            <p>
+              Slow treatments inspired by desert botanicals and ancient
+              Indian wellness rituals.
+            </p>
+            <button onclick="showToast('Ritual Spa selected')">Discover →</button>
           </article>
 
-
           <article class="experience-card">
-
-            <div class="experience-icon">
-              02
-            </div>
-
-            <div>
-              <h3>Golden Hour</h3>
-
-              <p>
-                Cocktails, warm light and an elevated
-                rooftop overlooking the city.
-              </p>
-            </div>
-
+            <div class="experience-number">02</div>
+            <div class="experience-icon">◒</div>
+            <h3>Desert Dining</h3>
+            <p>
+              A private table beneath the stars, prepared exclusively
+              for your evening.
+            </p>
+            <button onclick="showToast('Desert Dining selected')">Discover →</button>
           </article>
 
-
           <article class="experience-card">
-
-            <div class="experience-icon">
-              03
-            </div>
-
-            <div>
-              <h3>After Dark</h3>
-
-              <p>
-                Intimate dining, curated music and
-                evenings that don't need an itinerary.
-              </p>
-            </div>
-
+            <div class="experience-number">03</div>
+            <div class="experience-icon">✦</div>
+            <h3>Stargazing</h3>
+            <p>
+              Step away from the lights and discover a sky untouched
+              by the city.
+            </p>
+            <button onclick="showToast('Stargazing selected')">Discover →</button>
           </article>
 
-
           <article class="experience-card">
-
-            <div class="experience-icon">
-              04
-            </div>
-
-            <div>
-              <h3>Quiet Hours</h3>
-
-              <p>
-                Private wellness rituals designed
-                to restore, reset and slow everything down.
-              </p>
-            </div>
-
+            <div class="experience-number">04</div>
+            <div class="experience-icon">⌁</div>
+            <h3>Private Journey</h3>
+            <p>
+              Curated local experiences built around your pace,
+              interests and curiosity.
+            </p>
+            <button onclick="showToast('Private Journey selected')">Discover →</button>
           </article>
 
         </div>
 
       </div>
-
     </section>
 
 
-    <!-- ================= DINING ================= -->
+    <!-- STORY -->
+    <section class="story section" id="story">
+      <div class="container story-grid">
 
-    <section class="feature-section section" id="dining">
+        <div class="story-visual">
+          <div class="story-image"></div>
 
-      <div class="container feature-grid">
-
-        <div class="feature-visual dining-image">
-
-          <span>
-            AURELIA / DINING
-          </span>
-
+          <div class="story-badge">
+            <span>EST.</span>
+            <strong>2018</strong>
+            <small>Jaisalmer region</small>
+          </div>
         </div>
 
-        <div class="feature-copy">
-
-          <div class="section-label">
-            04 / DINING
-          </div>
+        <div class="story-copy">
+          <span class="eyebrow">OUR STORY</span>
 
           <h2>
-            Come for the stay.
-            <span>Stay for dinner.</span>
+            Built from<br>
+            <em>silence.</em>
           </h2>
 
-          <p>
-            Seasonal ingredients, open-fire cooking and
-            a dining room designed for long conversations.
+          <p class="large">
+            Aurelia began with a question:
+            what if a hotel could feel less like a hotel?
           </p>
 
-          <div class="mini-stats">
+          <p>
+            We found our answer in the landscape. Raw stone, open skies,
+            traditional craft and spaces designed around natural light.
+            The result is an estate that feels rooted rather than built.
+          </p>
 
-            <div>
-              <strong>01</strong>
-              <span>Signature restaurant</span>
+          <p>
+            Today, every detail is still guided by the same principle:
+            hospitality should feel personal, never performative.
+          </p>
+
+          <button class="btn btn-dark" onclick="showToast('Aurelia story opened')">
+            Read the full story ↗
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- GALLERY -->
+    <section class="section gallery-section" id="gallery">
+      <div class="container">
+
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">A GLIMPSE</span>
+            <h2>Life at<br><em>Aurelia.</em></h2>
+          </div>
+
+          <p>
+            Morning light, quiet architecture and the little moments
+            between destinations.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item g1" onclick="openGallery('Arrival')">
+            <span>Arrival</span>
+          </div>
+
+          <div class="gallery-item g2" onclick="openGallery('The Courtyard')">
+            <span>The Courtyard</span>
+          </div>
+
+          <div class="gallery-item g3" onclick="openGallery('Pool')">
+            <span>Pool</span>
+          </div>
+
+          <div class="gallery-item g4" onclick="openGallery('Dinner')">
+            <span>Dinner</span>
+          </div>
+
+          <div class="gallery-item g5" onclick="openGallery('The Suite')">
+            <span>The Suite</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- BOOKING -->
+    <section class="booking-section section" id="booking">
+      <div class="container">
+
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">PRIVATE RESERVATION</span>
+            <h2>Plan your<br><em>stay.</em></h2>
+          </div>
+
+          <p>
+            Build your stay and see your estimated total instantly.
+          </p>
+        </div>
+
+        <div class="booking-grid">
+
+          <div class="booking-panel">
+
+            <div class="booking-step">
+              <span>01</span>
+              <div class="booking-field">
+                <label>Check in</label>
+                <input type="date" id="checkin">
+              </div>
             </div>
 
-            <div>
-              <strong>02</strong>
-              <span>Private dining rooms</span>
+            <div class="booking-step">
+              <span>02</span>
+              <div class="booking-field">
+                <label>Check out</label>
+                <input type="date" id="checkout">
+              </div>
             </div>
 
-            <div>
-              <strong>24</strong>
-              <span>Hours of room service</span>
+            <div class="booking-step">
+              <span>03</span>
+              <div class="booking-field">
+                <label>Guests</label>
+
+                <div class="guest-control">
+                  <button onclick="changeGuests(-1)">−</button>
+                  <strong id="guestCount">2</strong>
+                  <button onclick="changeGuests(1)">+</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="booking-step">
+              <span>04</span>
+              <div class="booking-field">
+                <label>Room</label>
+
+                <select id="roomSelect">
+                  <option value="28000">Desert Suite — ₹28,000</option>
+                  <option value="34000">Garden Pavilion — ₹34,000</option>
+                  <option value="52000">Royal Residence — ₹52,000</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="extras">
+              <label>Enhance your stay</label>
+
+              <button class="extra" data-price="4500">
+                <span>Breakfast Ritual</span>
+                <strong>+₹4,500</strong>
+              </button>
+
+              <button class="extra" data-price="8000">
+                <span>Private Dinner</span>
+                <strong>+₹8,000</strong>
+              </button>
+
+              <button class="extra" data-price="6500">
+                <span>Spa Ritual</span>
+                <strong>+₹6,500</strong>
+              </button>
             </div>
 
           </div>
 
-          <button
-            class="dark-btn"
-            onclick="showToast('Dining menu preview opened')"
-          >
-            Explore dining →
-          </button>
+
+          <!-- LIVE ESTIMATE -->
+          <aside class="estimate-panel">
+
+            <div>
+              <span class="eyebrow">YOUR STAY</span>
+
+              <div class="estimate-room" id="estimateRoom">
+                Desert Suite
+              </div>
+
+              <div class="estimate-meta">
+                <span id="estimateDates">Select your dates</span>
+                <span id="estimateGuests">2 guests</span>
+              </div>
+
+              <div class="estimate-line"></div>
+
+              <div class="price-row">
+                <span>Room</span>
+                <strong id="roomPrice">₹28,000</strong>
+              </div>
+
+              <div class="price-row">
+                <span>Extras</span>
+                <strong id="extrasPrice">₹0</strong>
+              </div>
+
+              <div class="price-row">
+                <span>Service</span>
+                <strong id="servicePrice">₹2,800</strong>
+              </div>
+
+              <div class="estimate-line"></div>
+
+              <div class="total-row">
+                <span>Estimated total</span>
+                <strong id="totalPrice">₹30,800</strong>
+              </div>
+            </div>
+
+            <button class="btn btn-gold full" onclick="startReservation()">
+              Continue reservation →
+            </button>
+
+            <small>
+              Demo estimate. No real payment is processed.
+            </small>
+
+          </aside>
 
         </div>
 
       </div>
-
     </section>
 
 
-    <!-- ================= WELLNESS ================= -->
-
-    <section class="wellness section" id="wellness">
-
-      <div class="container wellness-inner">
-
-        <div class="wellness-copy">
-
-          <div class="section-label">
-            05 / WELLNESS
-          </div>
-
-          <h2>
-            Make space
-            <span>for yourself.</span>
-          </h2>
-
-          <p>
-            A private wellness floor featuring treatment rooms,
-            thermal rituals, movement spaces and a pool made
-            for unhurried afternoons.
-          </p>
-
-          <button
-            class="gold-btn"
-            onclick="showToast('Wellness experience selected')"
-          >
-            Explore wellness →
-          </button>
-
-        </div>
-
-        <div class="wellness-details">
-
-          <div class="wellness-item">
-            <span>01</span>
-            <strong>Thermal Suite</strong>
-            <small>Sauna · Steam · Ice</small>
-          </div>
-
-          <div class="wellness-item">
-            <span>02</span>
-            <strong>Signature Treatments</strong>
-            <small>Body · Face · Rituals</small>
-          </div>
-
-          <div class="wellness-item">
-            <span>03</span>
-            <strong>Movement Studio</strong>
-            <small>Yoga · Pilates · Private</small>
-          </div>
-
-          <div class="wellness-item">
-            <span>04</span>
-            <strong>Infinity Pool</strong>
-            <small>Open daily · 6AM–10PM</small>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================= CTA ================= -->
-
+    <!-- FINAL CTA -->
     <section class="final-cta">
+      <div class="final-bg"></div>
 
-      <div class="cta-overlay"></div>
-
-      <div class="container cta-content">
-
-        <div class="section-label">
-          YOUR NEXT ESCAPE
-        </div>
+      <div class="container final-content">
+        <span class="eyebrow">WHEN YOU'RE READY</span>
 
         <h2>
-          Some places
-          <em>stay with you.</em>
+          Leave ordinary<br>
+          <em>behind.</em>
         </h2>
 
-        <p>
-          Your Aurelia story begins here.
-        </p>
-
-        <button
-          class="gold-btn"
-          onclick="scrollToBooking()"
-        >
-          Reserve your stay →
+        <button class="btn btn-gold" onclick="scrollToSection('booking')">
+          Reserve Aurelia →
         </button>
-
       </div>
-
     </section>
 
   </main>
 
 
-  <!-- ================= FOOTER ================= -->
-
-  <footer id="contact">
-
+  <!-- FOOTER -->
+  <footer>
     <div class="container footer-grid">
 
-      <div class="footer-brand">
-
-        <div class="logo">
-          AURELIA
-          <span>GRAND</span>
-        </div>
-
-        <p>
-          A modern hotel for people
-          who appreciate the art of staying.
-        </p>
-
+      <div>
+        <div class="logo">AURELIA<span>•</span></div>
+        <p>Private hotel. Rajasthan.</p>
       </div>
 
-
-      <div class="footer-column">
-
-        <span>EXPLORE</span>
-
+      <div class="footer-links">
         <a href="#rooms">Rooms</a>
-        <a href="#experience">Experience</a>
-        <a href="#dining">Dining</a>
-        <a href="#wellness">Wellness</a>
-
+        <a href="#experience">Experiences</a>
+        <a href="#story">Our Story</a>
+        <a href="#booking">Reservations</a>
       </div>
 
-
-      <div class="footer-column">
-
-        <span>CONTACT</span>
-
-        <a href="#">hello@aureliagrand.demo</a>
-        <a href="#">+91 00000 00000</a>
-        <a href="#">The Aurelia District</a>
-
-      </div>
-
-
-      <div class="footer-column">
-
-        <span>FOLLOW</span>
-
-        <a href="#">Instagram</a>
-        <a href="#">Pinterest</a>
-        <a href="#">LinkedIn</a>
-
+      <div>
+        <small>Concept demo · 2026</small>
       </div>
 
     </div>
-
-
-    <div class="container footer-bottom">
-
-      <span>
-        © 2026 AURELIA GRAND
-      </span>
-
-      <span>
-        Concept demo · Crafted for portfolio
-      </span>
-
-    </div>
-
   </footer>
 
 
-  <!-- ================= TOAST ================= -->
-
-  <div class="toast" id="toast"></div>
-
-
-  <!-- ================= MODAL ================= -->
-
-  <div class="modal" id="availabilityModal">
-
+  <!-- RESERVATION MODAL -->
+  <div class="modal" id="reservationModal">
     <div class="modal-box">
 
-      <button
-        class="modal-close"
-        onclick="closeModal()"
-      >
+      <button class="modal-close" onclick="closeModal('reservationModal')">
         ×
       </button>
 
-      <div class="section-label">
-        AURELIA RESERVATIONS
-      </div>
+      <span class="eyebrow">RESERVATION REQUEST</span>
 
-      <h2>
-        Your stay
-        <span>starts here.</span>
-      </h2>
+      <h2>Almost there.</h2>
 
-      <div class="reservation-summary">
+      <p class="modal-description">
+        Tell us who will be joining you and our concierge-style demo
+        will prepare the reservation.
+      </p>
+
+      <div class="modal-form">
 
         <div>
-          <small>CHECK IN</small>
-          <strong id="summaryCheckin">—</strong>
+          <label>Your name</label>
+          <input id="guestName" placeholder="Full name">
         </div>
 
         <div>
-          <small>CHECK OUT</small>
-          <strong id="summaryCheckout">—</strong>
+          <label>Email</label>
+          <input id="guestEmail" type="email" placeholder="you@example.com">
         </div>
 
         <div>
-          <small>GUESTS</small>
-          <strong id="summaryGuests">—</strong>
+          <label>Special request</label>
+          <textarea id="guestRequest" placeholder="Anything we should prepare?"></textarea>
         </div>
 
-      </div>
-
-      <div class="availability-message">
-
-        <div class="availability-dot"></div>
-
-        <div>
-          <strong>Rooms available</strong>
-          <p>
-            We found selected rooms for your dates.
-          </p>
-        </div>
+        <button class="btn btn-dark full" onclick="confirmReservation()">
+          Request reservation →
+        </button>
 
       </div>
 
-      <button
-        class="gold-btn full"
-        onclick="continueReservation()"
-      >
-        Continue reservation →
+    </div>
+  </div>
+
+
+  <!-- GALLERY MODAL -->
+  <div class="modal" id="galleryModal">
+    <div class="gallery-modal">
+
+      <button class="modal-close" onclick="closeModal('galleryModal')">
+        ×
+      </button>
+
+      <div class="gallery-modal-image" id="galleryModalImage"></div>
+
+      <div class="gallery-modal-info">
+        <span class="eyebrow">AURELIA</span>
+        <h2 id="galleryTitle">Arrival</h2>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- SUCCESS MODAL -->
+  <div class="modal" id="successModal">
+    <div class="modal-box success-box">
+
+      <div class="success-icon">✓</div>
+
+      <span class="eyebrow">REQUEST RECEIVED</span>
+
+      <h2>See you<br><em>at Aurelia.</em></h2>
+
+      <p id="successText">
+        Your reservation request has been captured.
+      </p>
+
+      <button class="btn btn-dark" onclick="closeModal('successModal')">
+        Done
       </button>
 
     </div>
-
   </div>
 
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
 
   <script src="script.js"></script>
 
