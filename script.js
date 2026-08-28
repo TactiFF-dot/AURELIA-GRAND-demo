@@ -1,456 +1,513 @@
-const $ = (selector) => document.querySelector(selector);
-const $$ = (selector) => document.querySelectorAll(selector);
 
+/* =========================================
+   LOADER
+========================================= */
 
-/* =========================
-   GLOBAL STATE
-========================= */
+window.addEventListener("load", () => {
 
-const state = {
-  guests: 2,
-  roomPrice: 28000,
-  roomName: "Desert Suite",
-  extras: 0,
-  nights: 1
-};
+  const loader = document.getElementById("loader");
 
+  setTimeout(() => {
+    loader.classList.add("hidden");
+  }, 1600);
 
-/* =========================
-   NAVIGATION
-========================= */
-
-function scrollToSection(id){
-  document.getElementById(id)?.scrollIntoView({
-    behavior:"smooth"
-  });
-
-  $("#mobileMenu")?.classList.remove("show");
-}
-
-window.addEventListener("scroll", () => {
-  $("#nav")?.classList.toggle("scrolled", window.scrollY > 40);
 });
 
 
-/* =========================
+/* =========================================
+   HEADER
+========================================= */
+
+const header = document.getElementById("header");
+
+function handleHeader() {
+
+  header.classList.toggle(
+    "scrolled",
+    window.scrollY > 40
+  );
+
+}
+
+window.addEventListener(
+  "scroll",
+  handleHeader,
+  { passive: true }
+);
+
+handleHeader();
+
+
+/* =========================================
    MOBILE MENU
-========================= */
+========================================= */
 
-$("#menuBtn")?.addEventListener("click", () => {
-  $("#mobileMenu").classList.toggle("show");
-});
+const menuBtn =
+  document.getElementById("menuBtn");
 
-$$(".mobile-menu a").forEach(link => {
-  link.addEventListener("click", () => {
-    $("#mobileMenu").classList.remove("show");
-  });
-});
+const nav =
+  document.getElementById("nav");
 
+function closeMenu() {
 
-/* =========================
-   TOAST
-========================= */
-
-let toastTimer;
-
-function showToast(message){
-
-  const toast = $("#toast");
-
-  toast.textContent = message;
-  toast.classList.add("show");
-
-  clearTimeout(toastTimer);
-
-  toastTimer = setTimeout(() => {
-    toast.classList.remove("show");
-  }, 2200);
-}
-
-
-/* =========================
-   ROOM SELECTION
-========================= */
-
-function selectRoom(name, price){
-
-  state.roomName = name;
-  state.roomPrice = price;
-
-  $("#roomSelect").value = price;
-
-  updateEstimate();
-
-  scrollToSection("booking");
-
-  showToast(name + " selected");
-}
-
-
-/* =========================
-   GUEST CONTROL
-========================= */
-
-function changeGuests(amount){
-
-  state.guests += amount;
-
-  if(state.guests < 1){
-    state.guests = 1;
-  }
-
-  if(state.guests > 8){
-    state.guests = 8;
-    showToast("Maximum 8 guests");
-  }
-
-  $("#guestCount").textContent = state.guests;
-
-  updateEstimate();
-}
-
-
-/* =========================
-   DATE SETUP
-========================= */
-
-const today = new Date();
-
-const tomorrow = new Date(today);
-tomorrow.setDate(today.getDate() + 1);
-
-const dayAfter = new Date(today);
-dayAfter.setDate(today.getDate() + 2);
-
-function formatDate(date){
-
-  return date.toISOString().split("T")[0];
+  menuBtn.classList.remove("active");
+  nav.classList.remove("active");
+  document.body.classList.remove("menu-open");
 
 }
 
-$("#checkin").min = formatDate(today);
-$("#checkin").value = formatDate(tomorrow);
+menuBtn.addEventListener("click", () => {
 
-$("#checkout").min = formatDate(dayAfter);
-$("#checkout").value = formatDate(dayAfter);
-
-
-/* =========================
-   NIGHT CALCULATOR
-========================= */
-
-function calculateNights(){
-
-  const checkin = $("#checkin").value;
-  const checkout = $("#checkout").value;
-
-  if(!checkin || !checkout){
-    return 1;
-  }
-
-  const start = new Date(checkin);
-  const end = new Date(checkout);
-
-  const difference =
-    (end - start) / (1000 * 60 * 60 * 24);
-
-  return Math.max(1, difference);
-}
-
-
-/* =========================
-   ROOM SELECT
-========================= */
-
-$("#roomSelect")?.addEventListener("change", function(){
-
-  state.roomPrice = Number(this.value);
-
-  state.roomName =
-    this.options[this.selectedIndex].text.split(" — ")[0];
-
-  updateEstimate();
+  menuBtn.classList.toggle("active");
+  nav.classList.toggle("active");
+  document.body.classList.toggle("menu-open");
 
 });
 
+document
+  .querySelectorAll(".nav a")
+  .forEach(link => {
 
-/* =========================
-   DATE EVENTS
-========================= */
-
-$("#checkin")?.addEventListener("change", () => {
-
-  const checkin = new Date($("#checkin").value);
-
-  const nextDay = new Date(checkin);
-
-  nextDay.setDate(checkin.getDate() + 1);
-
-  $("#checkout").min = formatDate(nextDay);
-
-  if(new Date($("#checkout").value) <= checkin){
-    $("#checkout").value = formatDate(nextDay);
-  }
-
-  updateEstimate();
-
-});
-
-
-$("#checkout")?.addEventListener("change", updateEstimate);
-
-
-/* =========================
-   EXTRAS
-========================= */
-
-$$(".extra").forEach(extra => {
-
-  extra.addEventListener("click", () => {
-
-    extra.classList.toggle("active");
-
-    state.extras =
-      [...$$(".extra.active")]
-      .reduce((sum, item) => {
-        return sum + Number(item.dataset.price);
-      }, 0);
-
-    updateEstimate();
+    link.addEventListener(
+      "click",
+      closeMenu
+    );
 
   });
 
-});
+document.addEventListener(
+  "keydown",
+  event => {
 
-
-/* =========================
-   LIVE ESTIMATE
-========================= */
-
-function updateEstimate(){
-
-  state.nights = calculateNights();
-
-  const roomTotal =
-    state.roomPrice * state.nights;
-
-  const extraTotal =
-    state.extras * state.nights;
-
-  const service =
-    Math.round((roomTotal + extraTotal) * 0.10);
-
-  const total =
-    roomTotal + extraTotal + service;
-
-
-  $("#estimateRoom").textContent =
-    state.roomName;
-
-  $("#estimateGuests").textContent =
-    state.guests + (state.guests === 1 ? " guest" : " guests");
-
-
-  const checkin = $("#checkin").value;
-  const checkout = $("#checkout").value;
-
-  if(checkin && checkout){
-
-    $("#estimateDates").textContent =
-      `${checkin} → ${checkout} · ${state.nights} night${state.nights > 1 ? "s" : ""}`;
-
-  }
-
-
-  $("#roomPrice").textContent =
-    money(roomTotal);
-
-  $("#extrasPrice").textContent =
-    money(extraTotal);
-
-  $("#servicePrice").textContent =
-    money(service);
-
-  $("#totalPrice").textContent =
-    money(total);
-}
-
-
-/* =========================
-   MONEY FORMAT
-========================= */
-
-function money(value){
-
-  return "₹" +
-    Number(value).toLocaleString("en-IN");
-
-}
-
-
-/* =========================
-   RESERVATION
-========================= */
-
-function startReservation(){
-
-  updateEstimate();
-
-  $("#reservationModal").classList.add("show");
-
-}
-
-
-function confirmReservation(){
-
-  const name = $("#guestName").value.trim();
-  const email = $("#guestEmail").value.trim();
-
-  if(!name){
-
-    showToast("Please enter your name");
-
-    return;
-  }
-
-  if(!email || !email.includes("@")){
-
-    showToast("Enter a valid email");
-
-    return;
-  }
-
-
-  closeModal("reservationModal");
-
-  $("#successText").textContent =
-    `Thank you ${name}. Your request for ${state.roomName} has been captured. Estimated stay: ${money(getTotal())}.`;
-
-  $("#successModal").classList.add("show");
-
-}
-
-
-function getTotal(){
-
-  const roomTotal =
-    state.roomPrice * state.nights;
-
-  const extraTotal =
-    state.extras * state.nights;
-
-  const service =
-    Math.round((roomTotal + extraTotal) * .10);
-
-  return roomTotal + extraTotal + service;
-
-}
-
-
-/* =========================
-   MODALS
-========================= */
-
-function closeModal(id){
-
-  document.getElementById(id)?.classList.remove("show");
-
-}
-
-
-$$(".modal").forEach(modal => {
-
-  modal.addEventListener("click", event => {
-
-    if(event.target === modal){
-      modal.classList.remove("show");
+    if (event.key === "Escape") {
+      closeMenu();
     }
 
-  });
+  }
+);
 
-});
 
+/* =========================================
+   HERO PARALLAX
+========================================= */
 
-document.addEventListener("keydown", event => {
+const heroBg =
+  document.querySelector(".hero-bg");
 
-  if(event.key === "Escape"){
+window.addEventListener(
+  "mousemove",
+  event => {
 
-    $$(".modal.show").forEach(modal => {
-      modal.classList.remove("show");
-    });
+    if (window.innerWidth <= 700) {
+      return;
+    }
+
+    const x =
+      (event.clientX / window.innerWidth - .5);
+
+    const y =
+      (event.clientY / window.innerHeight - .5);
+
+    heroBg.style.transform =
+      `scale(1.08) translate(${x * -8}px, ${y * -8}px)`;
 
   }
+);
+
+
+/* =========================================
+   SUITE HOVER PARALLAX
+========================================= */
+
+const suiteCards =
+  document.querySelectorAll(".suite-card");
+
+suiteCards.forEach(card => {
+
+  const visual =
+    card.querySelector(".suite-visual");
+
+  card.addEventListener(
+    "mousemove",
+    event => {
+
+      if (window.innerWidth <= 700) {
+        return;
+      }
+
+      const rect =
+        card.getBoundingClientRect();
+
+      const x =
+        (event.clientX - rect.left) / rect.width - .5;
+
+      const y =
+        (event.clientY - rect.top) / rect.height - .5;
+
+      visual.style.transform =
+        `perspective(900px)
+         rotateX(${y * -2}deg)
+         rotateY(${x * 2}deg)`;
+
+    }
+  );
+
+  card.addEventListener(
+    "mouseleave",
+    () => {
+      visual.style.transform = "";
+    }
+  );
 
 });
 
 
-/* =========================
-   GALLERY
-========================= */
+/* =========================================
+   GALLERY HOVER
+========================================= */
 
-function openGallery(title){
+const galleryCards =
+  document.querySelectorAll(".gallery-card");
 
-  const modal = $("#galleryModal");
+galleryCards.forEach(card => {
 
-  $("#galleryTitle").textContent = title;
+  card.addEventListener(
+    "mousemove",
+    event => {
 
-  const image = $("#galleryModalImage");
+      if (window.innerWidth <= 700) {
+        return;
+      }
 
-  const backgrounds = {
+      const rect =
+        card.getBoundingClientRect();
 
-    "Arrival":
-      "linear-gradient(145deg,#9a8059,#29241c)",
+      const x =
+        event.clientX - rect.left;
 
-    "The Courtyard":
-      "linear-gradient(145deg,#7e8a6b,#272d23)",
+      const y =
+        event.clientY - rect.top;
 
-    "Pool":
-      "linear-gradient(145deg,#567484,#18242a)",
+      card.style.setProperty(
+        "--mx",
+        `${x}px`
+      );
 
-    "Dinner":
-      "linear-gradient(145deg,#7c5b43,#241814)",
+      card.style.setProperty(
+        "--my",
+        `${y}px`
+      );
 
-    "The Suite":
-      "linear-gradient(145deg,#a38c6a,#332a20)"
-  };
+    }
+  );
 
-  image.style.background =
-    backgrounds[title] ||
-    backgrounds["Arrival"];
-
-  modal.classList.add("show");
-
-}
-
-
-/* =========================
-   INITIAL UPDATE
-========================= */
-
-updateEstimate();
+});
 
 
-/* =========================
-   SMALL UX POLISH
-========================= */
+/* =========================================
+   BOOKING FORM
+========================================= */
 
-document.querySelectorAll("a[href^='#']").forEach(link => {
+const bookingForm =
+  document.getElementById("bookingForm");
 
-  link.addEventListener("click", event => {
+const arrival =
+  document.getElementById("arrival");
 
-    const target =
-      document.querySelector(link.getAttribute("href"));
+const departure =
+  document.getElementById("departure");
 
-    if(target){
+const guests =
+  document.getElementById("guests");
 
-      event.preventDefault();
+const bookingMessage =
+  document.getElementById("bookingMessage");
 
-      target.scrollIntoView({
-        behavior:"smooth"
+
+/* Prevent past dates */
+
+const today =
+  new Date().toISOString().split("T")[0];
+
+arrival.min = today;
+departure.min = today;
+
+
+arrival.addEventListener(
+  "change",
+  () => {
+
+    departure.min =
+      arrival.value || today;
+
+    if (
+      departure.value &&
+      departure.value <= arrival.value
+    ) {
+      departure.value = "";
+    }
+
+  }
+);
+
+
+bookingForm.addEventListener(
+  "submit",
+  event => {
+
+    event.preventDefault();
+
+    if (!arrival.value || !departure.value) {
+      bookingMessage.textContent =
+        "Please select your arrival and departure dates.";
+      return;
+    }
+
+    if (departure.value <= arrival.value) {
+      bookingMessage.textContent =
+        "Departure must be after arrival.";
+      return;
+    }
+
+    const guestCount =
+      guests.value;
+
+    bookingMessage.textContent =
+      `Availability request prepared for ${guestCount} guest${guestCount > 1 ? "s" : ""}. Our reservations team will contact you shortly.`;
+
+  }
+);
+
+
+/* =========================================
+   SCROLL REVEAL
+========================================= */
+
+const revealElements =
+  document.querySelectorAll(
+    ".section-label, .section-head, .suite-card, .experience-item, .story-content, .gallery-card, .dining-content, .reservation-inner, .location-content"
+  );
+
+
+revealElements.forEach(element => {
+
+  element.style.opacity = "0";
+  element.style.transform =
+    "translateY(28px)";
+  element.style.transition =
+    "opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1)";
+
+});
+
+
+const revealObserver =
+  new IntersectionObserver(
+    entries => {
+
+      entries.forEach(entry => {
+
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        entry.target.style.opacity = "1";
+        entry.target.style.transform =
+          "translateY(0)";
+
+        revealObserver.unobserve(
+          entry.target
+        );
+
       });
 
+    },
+    {
+      threshold: .12
     }
+  );
+
+
+revealElements.forEach(element => {
+  revealObserver.observe(element);
+});
+
+
+/* =========================================
+   ACTIVE NAV
+========================================= */
+
+const navLinks =
+  document.querySelectorAll(".nav a");
+
+const sections =
+  document.querySelectorAll("main section[id]");
+
+
+const sectionObserver =
+  new IntersectionObserver(
+    entries => {
+
+      entries.forEach(entry => {
+
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        navLinks.forEach(link => {
+          link.classList.remove("active");
+        });
+
+        const current =
+          document.querySelector(
+            `.nav a[href="#${entry.target.id}"]`
+          );
+
+        if (current) {
+          current.classList.add("active");
+        }
+
+      });
+
+    },
+    {
+      threshold: .25
+    }
+  );
+
+
+sections.forEach(section => {
+  sectionObserver.observe(section);
+});
+
+
+/* =========================================
+   SMOOTH ANCHOR SCROLL
+========================================= */
+
+document
+  .querySelectorAll('a[href^="#"]')
+  .forEach(link => {
+
+    link.addEventListener(
+      "click",
+      event => {
+
+        const id =
+          link.getAttribute("href");
+
+        if (!id || id === "#") {
+          return;
+        }
+
+        const target =
+          document.querySelector(id);
+
+        if (!target) {
+          return;
+        }
+
+        event.preventDefault();
+
+        const headerHeight =
+          header.offsetHeight;
+
+        const top =
+          target.getBoundingClientRect().top +
+          window.scrollY -
+          headerHeight;
+
+        window.scrollTo({
+          top,
+          behavior: "smooth"
+        });
+
+      }
+    );
 
   });
 
-});
+
+/* =========================================
+   IMAGE-LIKE CURSOR EFFECT
+========================================= */
+
+if (window.innerWidth > 900) {
+
+  const cursor =
+    document.createElement("div");
+
+  cursor.className =
+    "aurelia-cursor";
+
+  document.body.appendChild(cursor);
+
+  const cursorStyle =
+    document.createElement("style");
+
+  cursorStyle.textContent = `
+    .aurelia-cursor {
+      position: fixed;
+      z-index: 9998;
+      width: 8px;
+      height: 8px;
+      border: 1px solid #bda77b;
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition:
+        width .25s ease,
+        height .25s ease,
+        background .25s ease;
+    }
+
+    .aurelia-cursor.cursor-large {
+      width: 38px;
+      height: 38px;
+      background: rgba(189,167,123,.08);
+    }
+  `;
+
+  document.head.appendChild(cursorStyle);
+
+  window.addEventListener(
+    "mousemove",
+    event => {
+
+      cursor.style.left =
+        `${event.clientX}px`;
+
+      cursor.style.top =
+        `${event.clientY}px`;
+
+    }
+  );
+
+  const interactive =
+    document.querySelectorAll(
+      "a, button, .suite-card, .gallery-card"
+    );
+
+  interactive.forEach(item => {
+
+    item.addEventListener(
+      "mouseenter",
+      () => {
+        cursor.classList.add(
+          "cursor-large"
+        );
+      }
+    );
+
+    item.addEventListener(
+      "mouseleave",
+      () => {
+        cursor.classList.remove(
+          "cursor-large"
+        );
+      }
+    );
+
+  });
+
+}
+
