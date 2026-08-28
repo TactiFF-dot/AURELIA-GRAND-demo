@@ -1,7 +1,10 @@
-
 /* =========================================
-   LOADER
+   AURELIA V2
+   INTERACTIONS
 ========================================= */
+
+
+/* LOADER */
 
 window.addEventListener("load", () => {
 
@@ -9,60 +12,58 @@ window.addEventListener("load", () => {
 
   setTimeout(() => {
     loader.classList.add("hidden");
-  }, 1600);
+  }, 1500);
 
 });
 
 
-/* =========================================
-   HEADER
-========================================= */
+/* HEADER */
 
 const header = document.getElementById("header");
 
-function handleHeader() {
+function updateHeader() {
 
-  header.classList.toggle(
-    "scrolled",
-    window.scrollY > 40
-  );
+  if (window.scrollY > 50) {
+    header.classList.add("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+  }
 
 }
 
 window.addEventListener(
   "scroll",
-  handleHeader,
+  updateHeader,
   { passive: true }
 );
 
-handleHeader();
+updateHeader();
 
 
-/* =========================================
-   MOBILE MENU
-========================================= */
+/* MOBILE MENU */
 
-const menuBtn =
-  document.getElementById("menuBtn");
+const menuToggle =
+  document.getElementById("menuToggle");
 
 const nav =
   document.getElementById("nav");
 
 function closeMenu() {
 
-  menuBtn.classList.remove("active");
+  menuToggle.classList.remove("active");
   nav.classList.remove("active");
   document.body.classList.remove("menu-open");
 
 }
 
-menuBtn.addEventListener("click", () => {
+menuToggle.addEventListener("click", () => {
 
-  menuBtn.classList.toggle("active");
+  menuToggle.classList.toggle("active");
   nav.classList.toggle("active");
   document.body.classList.toggle("menu-open");
 
 });
+
 
 document
   .querySelectorAll(".nav a")
@@ -74,6 +75,7 @@ document
     );
 
   });
+
 
 document.addEventListener(
   "keydown",
@@ -87,51 +89,92 @@ document.addEventListener(
 );
 
 
-/* =========================================
-   HERO PARALLAX
-========================================= */
+/* SMOOTH SCROLL */
 
-const heroBg =
-  document.querySelector(".hero-bg");
+document
+  .querySelectorAll('a[href^="#"]')
+  .forEach(link => {
 
-window.addEventListener(
-  "mousemove",
-  event => {
+    link.addEventListener(
+      "click",
+      event => {
 
-    if (window.innerWidth <= 700) {
-      return;
+        const id =
+          link.getAttribute("href");
+
+        if (!id || id === "#") {
+          return;
+        }
+
+        const target =
+          document.querySelector(id);
+
+        if (!target) {
+          return;
+        }
+
+        event.preventDefault();
+
+        const offset =
+          header.offsetHeight;
+
+        const targetTop =
+          target.getBoundingClientRect().top +
+          window.scrollY -
+          offset;
+
+        window.scrollTo({
+          top: targetTop,
+          behavior: "smooth"
+        });
+
+      }
+    );
+
+  });
+
+
+/* HERO MOUSE PARALLAX */
+
+const heroImage =
+  document.querySelector(".hero-image");
+
+if (heroImage && window.innerWidth > 800) {
+
+  window.addEventListener(
+    "mousemove",
+    event => {
+
+      const x =
+        (event.clientX / window.innerWidth) - .5;
+
+      const y =
+        (event.clientY / window.innerHeight) - .5;
+
+      heroImage.style.transform =
+        `scale(1.08) translate(${x * -7}px, ${y * -7}px)`;
+
     }
+  );
 
-    const x =
-      (event.clientX / window.innerWidth - .5);
-
-    const y =
-      (event.clientY / window.innerHeight - .5);
-
-    heroBg.style.transform =
-      `scale(1.08) translate(${x * -8}px, ${y * -8}px)`;
-
-  }
-);
+}
 
 
-/* =========================================
-   SUITE HOVER PARALLAX
-========================================= */
+/* RESIDENCE TILT */
 
-const suiteCards =
-  document.querySelectorAll(".suite-card");
+const residenceCards =
+  document.querySelectorAll(".residence-card");
 
-suiteCards.forEach(card => {
+residenceCards.forEach(card => {
 
-  const visual =
-    card.querySelector(".suite-visual");
+  const image =
+    card.querySelector(".residence-image");
 
   card.addEventListener(
     "mousemove",
     event => {
 
-      if (window.innerWidth <= 700) {
+      if (window.innerWidth <= 800) {
         return;
       }
 
@@ -139,15 +182,15 @@ suiteCards.forEach(card => {
         card.getBoundingClientRect();
 
       const x =
-        (event.clientX - rect.left) / rect.width - .5;
+        ((event.clientX - rect.left) / rect.width) - .5;
 
       const y =
-        (event.clientY - rect.top) / rect.height - .5;
+        ((event.clientY - rect.top) / rect.height) - .5;
 
-      visual.style.transform =
-        `perspective(900px)
-         rotateX(${y * -2}deg)
-         rotateY(${x * 2}deg)`;
+      image.style.transform =
+        `perspective(1000px)
+         rotateX(${y * -1.5}deg)
+         rotateY(${x * 1.5}deg)`;
 
     }
   );
@@ -155,58 +198,54 @@ suiteCards.forEach(card => {
   card.addEventListener(
     "mouseleave",
     () => {
-      visual.style.transform = "";
+      image.style.transform = "";
     }
   );
 
 });
 
 
-/* =========================================
-   GALLERY HOVER
-========================================= */
+/* GALLERY POINTER */
 
-const galleryCards =
-  document.querySelectorAll(".gallery-card");
+const galleryItems =
+  document.querySelectorAll(".gallery-item");
 
-galleryCards.forEach(card => {
+galleryItems.forEach(item => {
 
-  card.addEventListener(
+  item.addEventListener(
     "mousemove",
     event => {
 
-      if (window.innerWidth <= 700) {
+      if (window.innerWidth <= 800) {
         return;
       }
 
       const rect =
-        card.getBoundingClientRect();
+        item.getBoundingClientRect();
 
       const x =
-        event.clientX - rect.left;
+        ((event.clientX - rect.left) / rect.width) - .5;
 
       const y =
-        event.clientY - rect.top;
+        ((event.clientY - rect.top) / rect.height) - .5;
 
-      card.style.setProperty(
-        "--mx",
-        `${x}px`
-      );
+      item.style.transform =
+        `translate(${x * 4}px, ${y * 4}px)`;
 
-      card.style.setProperty(
-        "--my",
-        `${y}px`
-      );
+    }
+  );
 
+  item.addEventListener(
+    "mouseleave",
+    () => {
+      item.style.transform = "";
     }
   );
 
 });
 
 
-/* =========================================
-   BOOKING FORM
-========================================= */
+/* BOOKING */
 
 const bookingForm =
   document.getElementById("bookingForm");
@@ -223,8 +262,6 @@ const guests =
 const bookingMessage =
   document.getElementById("bookingMessage");
 
-
-/* Prevent past dates */
 
 const today =
   new Date().toISOString().split("T")[0];
@@ -258,14 +295,18 @@ bookingForm.addEventListener(
     event.preventDefault();
 
     if (!arrival.value || !departure.value) {
+
       bookingMessage.textContent =
         "Please select your arrival and departure dates.";
+
       return;
     }
 
     if (departure.value <= arrival.value) {
+
       bookingMessage.textContent =
         "Departure must be after arrival.";
+
       return;
     }
 
@@ -279,159 +320,123 @@ bookingForm.addEventListener(
 );
 
 
-/* =========================================
-   SCROLL REVEAL
-========================================= */
+/* SCROLL REVEAL */
 
 const revealElements =
   document.querySelectorAll(
-    ".section-label, .section-head, .suite-card, .experience-item, .story-content, .gallery-card, .dining-content, .reservation-inner, .location-content"
+    ".section-number, .section-heading > div:last-child, .intro-main, .residence-card, .experience-row, .story-image, .story-main, .gallery-item, .dining-visual, .dining-copy, .reservation-inner, .location-main"
   );
 
 
-revealElements.forEach(element => {
+revealElements.forEach(
+  element => {
 
-  element.style.opacity = "0";
-  element.style.transform =
-    "translateY(28px)";
-  element.style.transition =
-    "opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1)";
+    element.style.opacity = "0";
 
-});
+    element.style.transform =
+      "translateY(30px)";
+
+    element.style.transition =
+      "opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1)";
+
+  }
+);
 
 
 const revealObserver =
   new IntersectionObserver(
     entries => {
 
-      entries.forEach(entry => {
+      entries.forEach(
+        entry => {
 
-        if (!entry.isIntersecting) {
-          return;
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          entry.target.style.opacity = "1";
+
+          entry.target.style.transform =
+            "translateY(0)";
+
+          revealObserver.unobserve(
+            entry.target
+          );
+
         }
-
-        entry.target.style.opacity = "1";
-        entry.target.style.transform =
-          "translateY(0)";
-
-        revealObserver.unobserve(
-          entry.target
-        );
-
-      });
+      );
 
     },
     {
-      threshold: .12
+      threshold: .1
     }
   );
 
 
-revealElements.forEach(element => {
-  revealObserver.observe(element);
-});
+revealElements.forEach(
+  element => {
+    revealObserver.observe(element);
+  }
+);
 
 
-/* =========================================
-   ACTIVE NAV
-========================================= */
+/* ACTIVE NAV */
 
 const navLinks =
   document.querySelectorAll(".nav a");
 
 const sections =
-  document.querySelectorAll("main section[id]");
+  document.querySelectorAll(
+    "main section[id]"
+  );
 
 
 const sectionObserver =
   new IntersectionObserver(
     entries => {
 
-      entries.forEach(entry => {
+      entries.forEach(
+        entry => {
 
-        if (!entry.isIntersecting) {
-          return;
-        }
+          if (!entry.isIntersecting) {
+            return;
+          }
 
-        navLinks.forEach(link => {
-          link.classList.remove("active");
-        });
-
-        const current =
-          document.querySelector(
-            `.nav a[href="#${entry.target.id}"]`
+          navLinks.forEach(
+            link => {
+              link.classList.remove("active");
+            }
           );
 
-        if (current) {
-          current.classList.add("active");
-        }
+          const activeLink =
+            document.querySelector(
+              `.nav a[href="#${entry.target.id}"]`
+            );
 
-      });
+          if (activeLink) {
+            activeLink.classList.add("active");
+          }
+
+        }
+      );
 
     },
     {
-      threshold: .25
+      rootMargin: "-35% 0px -55% 0px"
     }
   );
 
 
-sections.forEach(section => {
-  sectionObserver.observe(section);
-});
+sections.forEach(
+  section => {
+    sectionObserver.observe(section);
+  }
+);
 
 
-/* =========================================
-   SMOOTH ANCHOR SCROLL
-========================================= */
+/* CURSOR */
 
-document
-  .querySelectorAll('a[href^="#"]')
-  .forEach(link => {
-
-    link.addEventListener(
-      "click",
-      event => {
-
-        const id =
-          link.getAttribute("href");
-
-        if (!id || id === "#") {
-          return;
-        }
-
-        const target =
-          document.querySelector(id);
-
-        if (!target) {
-          return;
-        }
-
-        event.preventDefault();
-
-        const headerHeight =
-          header.offsetHeight;
-
-        const top =
-          target.getBoundingClientRect().top +
-          window.scrollY -
-          headerHeight;
-
-        window.scrollTo({
-          top,
-          behavior: "smooth"
-        });
-
-      }
-    );
-
-  });
-
-
-/* =========================================
-   IMAGE-LIKE CURSOR EFFECT
-========================================= */
-
-if (window.innerWidth > 900) {
+if (window.innerWidth > 1000) {
 
   const cursor =
     document.createElement("div");
@@ -441,16 +446,17 @@ if (window.innerWidth > 900) {
 
   document.body.appendChild(cursor);
 
-  const cursorStyle =
+
+  const cursorCSS =
     document.createElement("style");
 
-  cursorStyle.textContent = `
+  cursorCSS.textContent = `
     .aurelia-cursor {
       position: fixed;
       z-index: 9998;
-      width: 8px;
-      height: 8px;
-      border: 1px solid #bda77b;
+      width: 7px;
+      height: 7px;
+      border: 1px solid #bda477;
       border-radius: 50%;
       pointer-events: none;
       transform: translate(-50%, -50%);
@@ -460,14 +466,15 @@ if (window.innerWidth > 900) {
         background .25s ease;
     }
 
-    .aurelia-cursor.cursor-large {
-      width: 38px;
-      height: 38px;
-      background: rgba(189,167,123,.08);
+    .aurelia-cursor.large {
+      width: 34px;
+      height: 34px;
+      background: rgba(189,164,119,.08);
     }
   `;
 
-  document.head.appendChild(cursorStyle);
+  document.head.appendChild(cursorCSS);
+
 
   window.addEventListener(
     "mousemove",
@@ -482,32 +489,63 @@ if (window.innerWidth > 900) {
     }
   );
 
-  const interactive =
-    document.querySelectorAll(
-      "a, button, .suite-card, .gallery-card"
-    );
 
-  interactive.forEach(item => {
+  document
+    .querySelectorAll(
+      "a, button, .residence-card, .gallery-item"
+    )
+    .forEach(item => {
 
-    item.addEventListener(
-      "mouseenter",
-      () => {
-        cursor.classList.add(
-          "cursor-large"
-        );
-      }
-    );
+      item.addEventListener(
+        "mouseenter",
+        () => {
+          cursor.classList.add("large");
+        }
+      );
 
-    item.addEventListener(
-      "mouseleave",
-      () => {
-        cursor.classList.remove(
-          "cursor-large"
-        );
-      }
-    );
+      item.addEventListener(
+        "mouseleave",
+        () => {
+          cursor.classList.remove("large");
+        }
+      );
 
-  });
+    });
 
 }
+
+
+/* DATE FORMATTING HELPER */
+
+function formatDate(value) {
+
+  if (!value) {
+    return "";
+  }
+
+  const date =
+    new Date(value + "T00:00:00");
+
+  return date.toLocaleDateString(
+    "en-IN",
+    {
+      day: "2-digit",
+      month: "short",
+      year: "numeric"
+    }
+  );
+
+}
+
+
+/* CONSOLE BRANDING */
+
+console.log(
+  "%c AURELIA V2 ",
+  "background:#bda477;color:#10100e;padding:8px 14px;font-family:serif;font-size:16px;"
+);
+
+console.log(
+  "Private Retreat — Portfolio Demo"
+);
 
