@@ -4,76 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>TAMOGNA — Digital Experiences for Ambitious Brands</title>
-
-  <meta
-    name="description"
-    content="TAMOGNA creates premium digital experiences for ambitious brands. Founded by Sahil Kokode."
-  >
-
-  <meta name="theme-color" content="#080808">
+  <title>AURELIA — Private Luxury Retreat</title>
+  <meta name="description" content="Aurelia — a private luxury retreat on the Konkan coast.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body id="top">
+<body>
 
-  <!-- =========================
-       LOADER
-  ========================== -->
-
+  <!-- LOADER -->
   <div class="loader" id="loader">
     <div class="loader-inner">
-      <span>TAMOGNA</span>
-
-      <div class="loader-line">
-        <i></i>
-      </div>
+      <span class="loader-logo">AURELIA</span>
+      <div class="loader-line"></div>
+      <small>PRIVATE RETREAT</small>
     </div>
   </div>
 
 
-  <!-- =========================
-       HEADER
-  ========================== -->
+  <!-- HEADER -->
+  <header class="header" id="header">
 
-  <header class="header">
-
-    <a href="#top" class="logo" aria-label="TAMOGNA Home">
-      <span class="logo-mark">T</span>
-      <span class="logo-text">TAMOGNA</span>
+    <a href="#home" class="logo">
+      <span class="logo-mark">A</span>
+      <span>AURELIA</span>
     </a>
 
     <nav class="nav" id="nav">
-
-      <a href="#work">Work</a>
-      <a href="#services">Services</a>
-      <a href="#about">About</a>
-      <a href="#process">Process</a>
+      <a href="#stay">Stay</a>
+      <a href="#experience">Experience</a>
+      <a href="#story">Story</a>
+      <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
-
     </nav>
 
-    <a href="#contact" class="header-cta">
-      Start a project
-      <span>↗</span>
+    <a href="#reserve" class="header-cta">
+      Reserve <span>↗</span>
     </a>
 
-    <button
-      class="menu-btn"
-      id="menuBtn"
-      type="button"
-      aria-label="Open menu"
-      aria-expanded="false"
-    >
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
       <span></span>
       <span></span>
     </button>
@@ -83,836 +57,88 @@
 
   <main>
 
-    <!-- =========================
-         HERO
-    ========================== -->
-
+    <!-- HERO -->
     <section class="hero" id="home">
 
-      <div class="hero-grid"></div>
-      <div class="hero-noise"></div>
+      <div class="hero-image"></div>
+      <div class="hero-shade"></div>
 
       <div class="hero-content">
 
-        <div class="eyebrow reveal">
+        <div class="hero-top">
+          <span class="eyebrow">
+            <i></i>
+            KONKAN COAST / INDIA
+          </span>
 
-          <span class="status-dot"></span>
-
-          Independent digital studio ·
-          Available for selected projects
-
+          <span class="hero-index">EST. 2026</span>
         </div>
 
-
-        <h1 class="hero-title reveal delay-1">
-
-          <span class="line">
-            DIGITAL
-          </span>
-
-          <span class="line outline">
-            EXPERIENCES
-          </span>
-
-          <span class="line">
-            FOR <em>AMBITION.</em>
-          </span>
-
+        <h1>
+          LIVE
+          <em>BEAUTIFULLY.</em>
         </h1>
 
-
-        <div class="hero-bottom reveal delay-2">
-
-          <p class="hero-description">
-
-            TAMOGNA builds bold, high-performance digital
-            experiences for brands that want to look different,
-            feel premium and be remembered.
-
-          </p>
-
-
-          <a href="#work" class="hero-button">
-
-            Explore selected work
-
-            <span class="button-arrow">
-              ↘
-            </span>
-
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <div class="hero-visual">
-
-        <div class="visual-orbit orbit-one"></div>
-        <div class="visual-orbit orbit-two"></div>
-
-        <div class="visual-core">
-          <span>T</span>
-        </div>
-
-        <div class="visual-tag tag-top">
-          TAMOGNA / 01
-        </div>
-
-        <div class="visual-tag tag-bottom">
-          DIGITAL STUDIO
-        </div>
-
-      </div>
-
-
-      <div class="hero-scroll">
-
-        <span class="scroll-line"></span>
-
-        Scroll to explore
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         WORK
-    ========================== -->
-
-    <section class="work-section" id="work">
-
-      <div class="section-width">
-
-        <div class="work-top">
-
-          <div class="section-label">
-            <span>01</span>
-            Selected work
-          </div>
-
-
-          <div class="work-intro">
-
-            <div class="mono-text">
-              Recent digital experiences
-            </div>
-
-            <h2>
-              BUILT TO
-              <em>STAND OUT.</em>
-            </h2>
-
-          </div>
-
-        </div>
-
-
-        <!-- PROJECT FILTERS -->
-
-        <div class="project-filter-bar">
-
-          <button
-            class="project-filter active"
-            data-filter="all"
-          >
-            All
-          </button>
-
-          <button
-            class="project-filter"
-            data-filter="fitness"
-          >
-            Fitness
-          </button>
-
-          <button
-            class="project-filter"
-            data-filter="creative"
-          >
-            Creative
-          </button>
-
-          <button
-            class="project-filter"
-            data-filter="business"
-          >
-            Business
-          </button>
-
-          <button
-            class="project-filter"
-            data-filter="automotive"
-          >
-            Automotive
-          </button>
-
-          <button
-            class="project-filter"
-            data-filter="lifestyle"
-          >
-            Lifestyle
-          </button>
-
-        </div>
-
-
-        <div class="project-list project-list-v2">
-
-
-          <!-- =========================
-               01 IRONVAULT
-          ========================== -->
-
-          <article
-            class="project-card project-featured"
-            data-category="fitness"
-          >
-
-            <div class="project-meta">
-
-              <span>01 / Fitness</span>
-              <span>Brand Experience</span>
-
-            </div>
-
-
-            <div class="project-preview ironvault-preview">
-
-              <div class="preview-grid"></div>
-
-
-              <div class="preview-copy">
-
-                <span class="preview-small">
-                  IRONVAULT FITNESS
-                </span>
-
-                <strong>
-                  BUILT<br>
-                  DIFFERENT.
-                </strong>
-
-                <i class="preview-line"></i>
-
-                <small>
-                  PERFORMANCE / STRENGTH / DISCIPLINE
-                </small>
-
-              </div>
-
-
-              <div class="preview-circle">
-                <span>IV</span>
-              </div>
-
-
-              <a
-                href="https://tactiff-dot.github.io/IRONVAULT-FITNESS-demo/"
-                target="_blank"
-                rel="noopener"
-                class="project-overlay-link"
-              >
-                View live ↗
-              </a>
-
-            </div>
-
-
-            <div class="project-info">
-
-              <div>
-
-                <h3>
-                  IRONVAULT FITNESS
-                </h3>
-
-                <p>
-                  A bold premium fitness experience focused on
-                  strength, performance and membership conversion.
-                </p>
-
-              </div>
-
-
-              <a
-                href="https://tactiff-dot.github.io/IRONVAULT-FITNESS-demo/"
-                target="_blank"
-                rel="noopener"
-                class="project-link"
-              >
-                Live demo
-                <span>↗</span>
-              </a>
-
-            </div>
-
-          </article>
-
-
-          <!-- =========================
-               02 NOIR
-          ========================== -->
-
-          <article
-            class="project-card"
-            data-category="creative"
-          >
-
-            <div class="project-meta">
-
-              <span>02 / Creative</span>
-              <span>Cinema Experience</span>
-
-            </div>
-
-
-            <div class="project-preview noir-preview">
-
-              <div class="noir-lines"></div>
-
-
-              <div class="noir-title">
-
-                <span>
-                  AN EXPERIENCE IN
-                </span>
-
-                <strong>
-                  NOIR
-                </strong>
-
-              </div>
-
-
-              <div class="noir-badge">
-
-                CINEMA<br>
-                CULTURE<br>
-                VISUALS
-
-              </div>
-
-
-              <a
-                href="https://tactiff-dot.github.io/NOIR-Cinema/"
-                target="_blank"
-                rel="noopener"
-                class="project-overlay-link"
-              >
-                View live ↗
-              </a>
-
-            </div>
-
-
-            <div class="project-info">
-
-              <div>
-
-                <h3>
-                  NOIR CINEMA
-                </h3>
-
-                <p>
-                  An immersive cinematic interface designed around
-                  atmosphere, typography and visual storytelling.
-                </p>
-
-              </div>
-
-
-              <a
-                href="https://tactiff-dot.github.io/NOIR-Cinema/"
-                target="_blank"
-                rel="noopener"
-                class="project-link"
-              >
-                Live demo
-                <span>↗</span>
-              </a>
-
-            </div>
-
-          </article>
-
-
-          <!-- =========================
-               03 REAL ESTATE
-          ========================== -->
-
-          <article
-            class="project-card"
-            data-category="business"
-          >
-
-            <div class="project-meta">
-
-              <span>03 / Business</span>
-              <span>Property Experience</span>
-
-            </div>
-
-
-            <div class="project-preview estate-preview">
-
-              <div class="estate-copy">
-
-                <span>
-                  PRIVATE PROPERTY COLLECTION
-                </span>
-
-                <strong>
-                  SPACE<br>
-                  WITH<br>
-                  PURPOSE.
-                </strong>
-
-              </div>
-
-
-              <div class="estate-block"></div>
-
-
-              <a
-                href="https://tactiff-dot.github.io/REAL-ESTATE-demo/"
-                target="_blank"
-                rel="noopener"
-                class="project-overlay-link"
-              >
-                View live ↗
-              </a>
-
-            </div>
-
-
-            <div class="project-info">
-
-              <div>
-
-                <h3>
-                  REAL ESTATE
-                </h3>
-
-                <p>
-                  A modern property showcase designed to make
-                  premium spaces feel desirable and exclusive.
-                </p>
-
-              </div>
-
-
-              <a
-                href="https://tactiff-dot.github.io/REAL-ESTATE-demo/"
-                target="_blank"
-                rel="noopener"
-                class="project-link"
-              >
-                Live demo
-                <span>↗</span>
-              </a>
-
-            </div>
-
-          </article>
-
-
-          <!-- =========================
-               04 VELOCE
-          ========================== -->
-
-          <article
-            class="project-card"
-            data-category="automotive"
-          >
-
-            <div class="project-meta">
-
-              <span>04 / Automotive</span>
-              <span>Rental Experience</span>
-
-            </div>
-
-
-            <div class="project-preview veloce-preview">
-
-              <div class="veloce-grid"></div>
-
-
-              <div class="veloce-copy">
-
-                <span>
-                  VELOCE
-                </span>
-
-                <strong>
-                  DRIVE<br>
-                  WITHOUT<br>
-                  LIMITS.
-                </strong>
-
-              </div>
-
-
-              <div class="veloce-orbit"></div>
-
-
-              <a
-                href="https://tactiff-dot.github.io/CAR-RENTAL-demo/"
-                target="_blank"
-                rel="noopener"
-                class="project-overlay-link"
-              >
-                View live ↗
-              </a>
-
-            </div>
-
-
-            <div class="project-info">
-
-              <div>
-
-                <h3>
-                  VÉLOCE
-                </h3>
-
-                <p>
-                  A performance-inspired car rental experience
-                  built around speed, confidence and premium vehicles.
-                </p>
-
-              </div>
-
-
-              <a
-                href="https://tactiff-dot.github.io/CAR-RENTAL-demo/"
-                target="_blank"
-                rel="noopener"
-                class="project-link"
-              >
-                Live demo
-                <span>↗</span>
-              </a>
-
-            </div>
-
-          </article>
-
-
-          <!-- =========================
-               05 BEAUTY
-          ========================== -->
-
-          <article
-            class="project-card"
-            data-category="lifestyle"
-          >
-
-            <div class="project-meta">
-
-              <span>05 / Lifestyle</span>
-              <span>Beauty Experience</span>
-
-            </div>
-
-
-            <div class="project-preview beauty-preview">
-
-              <div class="beauty-frame"></div>
-
-
-              <div class="beauty-copy">
-
-                <span>
-                  BEAUTY / CARE / RITUAL
-                </span>
-
-                <strong>
-                  YOUR<br>
-                  BEAUTY,<br>
-                  ELEVATED.
-                </strong>
-
-              </div>
-
-
-              <a
-                href="https://tactiff-dot.github.io/BEAUTY-SALON-demo/"
-                target="_blank"
-                rel="noopener"
-                class="project-overlay-link"
-              >
-                View live ↗
-              </a>
-
-            </div>
-
-
-            <div class="project-info">
-
-              <div>
-
-                <h3>
-                  BEAUTY SALON
-                </h3>
-
-                <p>
-                  An elegant salon experience balancing editorial
-                  design with a clean conversion-focused structure.
-                </p>
-
-              </div>
-
-
-              <a
-                href="https://tactiff-dot.github.io/BEAUTY-SALON-demo/"
-                target="_blank"
-                rel="noopener"
-                class="project-link"
-              >
-                Live demo
-                <span>↗</span>
-              </a>
-
-            </div>
-
-          </article>
-
-
-          <!-- =========================
-               06 AURELIA GRAND
-          ========================== -->
-
-          <article
-            class="project-card"
-            data-category="lifestyle"
-          >
-
-            <div class="project-meta">
-
-              <span>06 / Hospitality</span>
-              <span>Luxury Experience</span>
-
-            </div>
-
-
-            <div class="project-preview hotel-preview">
-
-              <div class="hotel-ring"></div>
-
-
-              <div class="hotel-center">
-
-                <span>
-                  PRIVATE HOSPITALITY
-                </span>
-
-                <strong>
-                  HOTEL
-                </strong>
-
-              </div>
-
-
-              <a
-                href="https://tactiff-dot.github.io/AURELIA-GRAND-demo/"
-                target="_blank"
-                rel="noopener"
-                class="project-overlay-link"
-              >
-                View live ↗
-              </a>
-
-            </div>
-
-
-            <div class="project-info">
-
-              <div>
-
-                <h3>
-                  AURELIA GRAND
-                </h3>
-
-                <p>
-                  A refined luxury hospitality experience designed
-                  around premium spaces, calm visuals and elevated service.
-                </p>
-
-              </div>
-
-
-              <a
-                href="https://tactiff-dot.github.io/AURELIA-GRAND-demo/"
-                target="_blank"
-                rel="noopener"
-                class="project-link"
-              >
-                Live demo
-                <span>↗</span>
-              </a>
-
-            </div>
-
-          </article>
-
-
-          <!-- =========================
-               07 PHOTOGRAPHY
-          ========================== -->
-
-          <article
-            class="project-card"
-            data-category="creative"
-          >
-
-            <div class="project-meta">
-
-              <span>07 / Creative</span>
-              <span>Visual Portfolio</span>
-
-            </div>
-
-
-            <div class="project-preview photography-preview">
-
-              <div class="photo-frame photo-frame-one"></div>
-              <div class="photo-frame photo-frame-two"></div>
-
-
-              <div class="photo-copy">
-
-                <span>
-                  VISUAL STORIES
-                </span>
-
-                <strong>
-                  FRAME<br>
-                  THE<br>
-                  MOMENT.
-                </strong>
-
-              </div>
-
-
-              <div class="project-overlay-label">
-                CONCEPT
-              </div>
-
-            </div>
-
-
-            <div class="project-info">
-
-              <div>
-
-                <h3>
-                  PHOTOGRAPHY
-                </h3>
-
-                <p>
-                  A visual-first photography portfolio concept
-                  focused on composition and storytelling.
-                </p>
-
-              </div>
-
-
-              <span class="project-status">
-                Concept
-              </span>
-
-            </div>
-
-          </article>
-
-
-          <!-- =========================
-               08 FASHION
-          ========================== -->
-
-          <article
-            class="project-card"
-            data-category="lifestyle"
-          >
-
-            <div class="project-meta">
-
-              <span>08 / Lifestyle</span>
-              <span>Fashion Experience</span>
-
-            </div>
-
-
-            <div class="project-preview fashion-preview">
-
-              <div class="fashion-grid"></div>
-
-
-              <div class="fashion-copy">
-
-                <span>
-                  NEW COLLECTION / 2026
-                </span>
-
-                <strong>
-                  FORM<br>
-                  MEETS<br>
-                  ATTITUDE.
-                </strong>
-
-              </div>
-
-
-              <div class="project-overlay-label">
-                CONCEPT
-              </div>
-
-            </div>
-
-
-            <div class="project-info">
-
-              <div>
-
-                <h3>
-                  FASHION STORE
-                </h3>
-
-                <p>
-                  A modern editorial commerce concept built for
-                  fashion brands with a strong visual identity.
-                </p>
-
-              </div>
-
-
-              <span class="project-status">
-                Concept
-              </span>
-
-            </div>
-
-          </article>
-
-
-        </div>
-
-
-        <div class="work-footer">
+        <div class="hero-bottom">
 
           <p>
-            Every project is designed around a simple idea:
-            make the first impression impossible to ignore.
+            A private sanctuary shaped by the sea,
+            slow mornings and considered design.
           </p>
 
+          <a href="#stay" class="circle-link">
+            <span>Explore</span>
+            <b>↓</b>
+          </a>
 
-          <a href="#contact" class="text-arrow">
-            Start something
-            <span>↗</span>
+        </div>
+
+      </div>
+
+      <div class="hero-meta">
+        <span>18° 31' N</span>
+        <span>73° 51' E</span>
+      </div>
+
+      <div class="scroll-indicator">
+        <span>SCROLL TO DISCOVER</span>
+        <i></i>
+      </div>
+
+    </section>
+
+
+    <!-- INTRO -->
+    <section class="intro section">
+
+      <div class="section-number">
+        <span>01</span>
+        Introduction
+      </div>
+
+      <div class="intro-main">
+
+        <p class="gold-label">A PLACE TO PAUSE</p>
+
+        <h2>
+          SOME JOURNEYS
+          TAKE YOU
+          <em>AWAY.</em>
+          OTHERS BRING
+          YOU BACK.
+        </h2>
+
+        <div class="intro-footer">
+
+          <p>
+            Aurelia is an intimate retreat created for
+            people who appreciate the beauty of less.
+            Natural textures, open horizons and rooms
+            designed around the rhythm of daylight.
+          </p>
+
+          <a href="#story" class="text-link">
+            Our philosophy <span>↗</span>
           </a>
 
         </div>
@@ -922,195 +148,276 @@
     </section>
 
 
-    <!-- =========================
-         SERVICES
-    ========================== -->
+    <!-- STAY -->
+    <section class="stay section" id="stay">
 
-    <section class="services-section" id="services">
+      <div class="section-heading">
 
-      <div class="section-width">
-
-        <div class="services-header">
-
-          <div class="section-label">
-            <span>02</span>
-            Services
-          </div>
-
-
-          <div class="services-heading">
-
-            <div class="mono-text">
-              What TAMOGNA builds
-            </div>
-
-            <h2>
-              DIGITAL THAT
-              <em>MEANS BUSINESS.</em>
-            </h2>
-
-          </div>
-
+        <div class="section-number">
+          <span>02</span>
+          The Residences
         </div>
 
+        <div>
+          <p class="gold-label">STAY WITH US</p>
 
-        <div class="services-layout">
-
-
-          <article class="service-card featured-service">
-
-            <span class="service-number">
-              01
-            </span>
-
-            <span class="service-icon">
-              ↗
-            </span>
-
-
-            <div class="service-content">
-
-              <div class="service-type">
-                CORE SERVICE
-              </div>
-
-              <h3>
-                Premium Website Design
-              </h3>
-
-              <p class="service-description">
-                Strategic, modern websites designed to give brands
-                a stronger digital presence and a memorable first
-                impression.
-              </p>
-
-            </div>
-
-
-            <div class="service-tags">
-
-              <span>UI/UX</span>
-              <span>Web Design</span>
-              <span>Responsive</span>
-
-            </div>
-
-          </article>
-
-
-          <article class="service-card">
-
-            <span class="service-number">
-              02
-            </span>
-
-            <span class="service-icon">
-              ↗
-            </span>
-
-
-            <div class="service-content">
-
-              <div class="service-type">
-                EXPERIENCE
-              </div>
-
-              <h3>
-                Interactive Experiences
-              </h3>
-
-              <p class="service-description">
-                Motion, interactions and micro-details that turn
-                static pages into experiences people remember.
-              </p>
-
-            </div>
-
-
-            <div class="service-tags">
-
-              <span>Motion</span>
-              <span>Interactions</span>
-              <span>JavaScript</span>
-
-            </div>
-
-          </article>
-
-
-          <article class="service-card">
-
-            <span class="service-number">
-              03
-            </span>
-
-            <span class="service-icon">
-              ↗
-            </span>
-
-
-            <div class="service-content">
-
-              <div class="service-type">
-                DEVELOPMENT
-              </div>
-
-              <h3>
-                Frontend Development
-              </h3>
-
-              <p class="service-description">
-                Clean, responsive and performance-focused frontend
-                development built for real-world devices.
-              </p>
-
-            </div>
-
-
-            <div class="service-tags">
-
-              <span>HTML</span>
-              <span>CSS</span>
-              <span>JavaScript</span>
-
-            </div>
-
-          </article>
-
-
+          <h2>
+            ROOMS MADE
+            <em>FOR LINGERING.</em>
+          </h2>
         </div>
 
+      </div>
 
-        <div class="capabilities">
+
+      <div class="residence-grid">
+
+        <!-- CARD 1 -->
+        <article class="residence-card residence-featured">
+
+          <div class="residence-image image-ocean">
+
+            <div class="image-number">01</div>
+
+            <div class="image-overlay"></div>
+
+            <div class="residence-caption">
+              <small>THE SIGNATURE</small>
+              <h3>Ocean Suite</h3>
+            </div>
+
+            <a href="#reserve" class="image-arrow">↗</a>
+
+          </div>
+
+          <div class="residence-info">
+            <div>
+              <h4>Ocean Suite</h4>
+              <p>
+                Floor-to-ceiling views, private terrace
+                and a horizon that never ends.
+              </p>
+            </div>
+
+            <span>FROM ₹28,000 / NIGHT</span>
+          </div>
+
+        </article>
 
 
-          <div class="capabilities-title">
+        <!-- CARD 2 -->
+        <article class="residence-card">
 
-            <span class="mono-text">
-              CAPABILITIES
-            </span>
+          <div class="residence-image image-garden">
 
+            <div class="image-number">02</div>
+
+            <div class="image-overlay"></div>
+
+            <div class="residence-caption">
+              <small>THE HIDEAWAY</small>
+              <h3>Garden Villa</h3>
+            </div>
+
+            <a href="#reserve" class="image-arrow">↗</a>
+
+          </div>
+
+          <div class="residence-info">
+            <div>
+              <h4>Garden Villa</h4>
+              <p>
+                A secluded garden sanctuary filled
+                with natural light.
+              </p>
+            </div>
+
+            <span>FROM ₹34,000 / NIGHT</span>
+          </div>
+
+        </article>
+
+
+        <!-- CARD 3 -->
+        <article class="residence-card">
+
+          <div class="residence-image image-residence">
+
+            <div class="image-number">03</div>
+
+            <div class="image-overlay"></div>
+
+            <div class="residence-caption">
+              <small>THE ULTIMATE</small>
+              <h3>Grand Residence</h3>
+            </div>
+
+            <a href="#reserve" class="image-arrow">↗</a>
+
+          </div>
+
+          <div class="residence-info">
+            <div>
+              <h4>Grand Residence</h4>
+              <p>
+                Expansive living spaces, private pool
+                and complete seclusion.
+              </p>
+            </div>
+
+            <span>FROM ₹52,000 / NIGHT</span>
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- EXPERIENCE -->
+    <section class="experience section" id="experience">
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          <span>03</span>
+          The Experience
+        </div>
+
+        <div>
+          <p class="gold-label">BEYOND THE ROOM</p>
+
+          <h2>
+            DAYS THAT
+            <em>FEEL DIFFERENT.</em>
+          </h2>
+        </div>
+
+      </div>
+
+
+      <div class="experience-list">
+
+        <article class="experience-row">
+          <span class="row-number">01</span>
+
+          <div class="experience-symbol">○</div>
+
+          <div class="experience-copy">
+            <small>WELLNESS</small>
+            <h3>Quiet Rituals</h3>
             <p>
-              A focused toolkit for building premium digital
-              experiences without unnecessary complexity.
+              Sunrise yoga, private treatments and
+              restorative rituals created around you.
             </p>
-
           </div>
 
+          <span class="row-arrow">↗</span>
+        </article>
 
-          <div class="capability-list">
 
-            <span>Brand Direction</span>
-            <span>UI / UX</span>
-            <span>Creative Direction</span>
-            <span>Responsive Design</span>
-            <span>HTML5</span>
-            <span>CSS3</span>
-            <span>JavaScript</span>
-            <span>Micro Interactions</span>
-            <span>Performance</span>
-            <span>Mobile First</span>
+        <article class="experience-row">
+          <span class="row-number">02</span>
 
+          <div class="experience-symbol">◇</div>
+
+          <div class="experience-copy">
+            <small>DINING</small>
+            <h3>The Aurelia Table</h3>
+            <p>
+              Seasonal ingredients transformed into
+              intimate dining experiences.
+            </p>
+          </div>
+
+          <span class="row-arrow">↗</span>
+        </article>
+
+
+        <article class="experience-row">
+          <span class="row-number">03</span>
+
+          <div class="experience-symbol">◌</div>
+
+          <div class="experience-copy">
+            <small>WATER</small>
+            <h3>Infinity Hours</h3>
+            <p>
+              Warm water, open skies and nowhere else
+              you need to be.
+            </p>
+          </div>
+
+          <span class="row-arrow">↗</span>
+        </article>
+
+
+        <article class="experience-row">
+          <span class="row-number">04</span>
+
+          <div class="experience-symbol">✦</div>
+
+          <div class="experience-copy">
+            <small>PRIVATE</small>
+            <h3>Beyond Aurelia</h3>
+            <p>
+              Curated journeys to hidden places known
+              only to our guests.
+            </p>
+          </div>
+
+          <span class="row-arrow">↗</span>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- STORY -->
+    <section class="story section" id="story">
+
+      <div class="story-image">
+        <div class="story-image-content">
+          <span>THE ART OF SLOW LIVING</span>
+          <strong>A</strong>
+        </div>
+      </div>
+
+      <div class="story-copy">
+
+        <div class="section-number">
+          <span>04</span>
+          Our Story
+        </div>
+
+        <div class="story-main">
+
+          <p class="gold-label">CREATED WITH INTENTION</p>
+
+          <h2>
+            LUXURY
+            <em>DOESN'T</em>
+            NEED TO
+            <span>SHOUT.</span>
+          </h2>
+
+          <p class="story-text">
+            Aurelia began with a simple belief:
+            the most luxurious thing we can give
+            someone is time.
+          </p>
+
+          <p class="story-text">
+            Every room, pathway and quiet corner
+            was designed around that idea.
+            Nothing unnecessary. Nothing rushed.
+          </p>
+
+          <div class="signature">
+            <span>AURELIA</span>
+            <small>EST. 2026</small>
           </div>
 
         </div>
@@ -1120,81 +427,52 @@
     </section>
 
 
-    <!-- =========================
-         ABOUT
-    ========================== -->
+    <!-- GALLERY -->
+    <section class="gallery section" id="gallery">
 
-    <section class="about-section" id="about">
+      <div class="section-heading">
 
-      <div class="section-width">
+        <div class="section-number">
+          <span>05</span>
+          Visual Journal
+        </div>
 
-        <div class="about-grid">
+        <div>
+          <p class="gold-label">A GLIMPSE</p>
 
-          <div class="section-label">
+          <h2>
+            MOMENTS
+            <em>WORTH KEEPING.</em>
+          </h2>
+        </div>
 
-            <span>03</span>
-            About
-
-          </div>
-
-
-          <div class="about-main">
-
-            <div class="mono-text">
-              The studio behind the work
-            </div>
+      </div>
 
 
-            <h2>
+      <div class="gallery-grid">
 
-              <span>
-                SMALL STUDIO.
-              </span>
+        <div class="gallery-item gallery-large">
+          <div class="gallery-bg gallery-bg-1"></div>
+          <span>01</span>
+          <strong>Arrival</strong>
+        </div>
 
-              BIG
+        <div class="gallery-item">
+          <div class="gallery-bg gallery-bg-2"></div>
+          <span>02</span>
+          <strong>Light</strong>
+        </div>
 
-              <em>
-                INTENT.
-              </em>
+        <div class="gallery-item">
+          <div class="gallery-bg gallery-bg-3"></div>
+          <span>03</span>
+          <strong>Water</strong>
+        </div>
 
-            </h2>
-
-
-            <div class="about-copy">
-
-              <p>
-                TAMOGNA is an independent digital studio focused on
-                creating premium websites and digital experiences
-                for ambitious brands.
-              </p>
-
-
-              <p>
-                Founded by <strong>Sahil Kokode</strong>, TAMOGNA
-                combines design, development and interaction to
-                create digital work that feels intentional.
-              </p>
-
-            </div>
-
-
-            <div class="about-statement">
-
-              <span class="statement-mark">
-                “
-              </span>
-
-              <p>
-                We don't build websites just to
-                <em>fill screens.</em>
-                We build experiences people
-                <em>remember.</em>
-              </p>
-
-            </div>
-
-          </div>
-
+        <div class="gallery-item gallery-wide">
+          <div class="gallery-bg gallery-bg-4"></div>
+          <span>04</span>
+          <strong>Evening</strong>
         </div>
 
       </div>
@@ -1202,330 +480,38 @@
     </section>
 
 
-    <!-- =========================
-         PROCESS
-    ========================== -->
+    <!-- DINING -->
+    <section class="dining section">
 
-    <section class="process-section" id="process">
+      <div class="dining-visual">
 
-      <div class="section-width">
+        <div class="dining-image"></div>
 
-        <div class="process-header">
-
-          <div class="section-label">
-
-            <span>04</span>
-            Process
-
-          </div>
-
-
-          <div>
-
-            <div class="mono-text">
-              From idea to launch
-            </div>
-
-
-            <h2>
-
-              <span>
-                NO RANDOM STEPS.
-              </span>
-
-              JUST A CLEAR
-
-              <em>
-                PROCESS.
-              </em>
-
-            </h2>
-
-          </div>
-
-        </div>
-
-
-        <div class="process-list">
-
-
-          <div class="process-item">
-
-            <span class="process-index">
-              01
-            </span>
-
-
-            <div>
-
-              <span class="process-type">
-                DISCOVER
-              </span>
-
-              <h3>
-                Understand the brand.
-              </h3>
-
-              <p>
-                Goals, audience, positioning and what the website
-                actually needs to achieve.
-              </p>
-
-            </div>
-
-
-            <span class="process-arrow">
-              ↗
-            </span>
-
-          </div>
-
-
-          <div class="process-item">
-
-            <span class="process-index">
-              02
-            </span>
-
-
-            <div>
-
-              <span class="process-type">
-                DIRECTION
-              </span>
-
-              <h3>
-                Define the visual language.
-              </h3>
-
-              <p>
-                Structure, typography, visual hierarchy and the
-                overall creative direction.
-              </p>
-
-            </div>
-
-
-            <span class="process-arrow">
-              ↗
-            </span>
-
-          </div>
-
-
-          <div class="process-item">
-
-            <span class="process-index">
-              03
-            </span>
-
-
-            <div>
-
-              <span class="process-type">
-                BUILD
-              </span>
-
-              <h3>
-                Turn design into experience.
-              </h3>
-
-              <p>
-                Responsive frontend development with interaction,
-                motion and performance in mind.
-              </p>
-
-            </div>
-
-
-            <span class="process-arrow">
-              ↗
-            </span>
-
-          </div>
-
-
-          <div class="process-item">
-
-            <span class="process-index">
-              04
-            </span>
-
-
-            <div>
-
-              <span class="process-type">
-                LAUNCH
-              </span>
-
-              <h3>
-                Polish. Test. Ship.
-              </h3>
-
-              <p>
-                Final responsive testing, refinement and deployment
-                for a polished launch.
-              </p>
-
-            </div>
-
-
-            <span class="process-arrow">
-              ↗
-            </span>
-
-          </div>
-
-
+        <div class="dining-badge">
+          <span>A</span>
+          <small>THE AURELIA<br>TABLE</small>
         </div>
 
       </div>
 
-    </section>
+      <div class="dining-copy">
 
-
-    <!-- =========================
-         WHY TAMOGNA
-    ========================== -->
-
-    <section class="why-section">
-
-      <div class="section-width">
-
-        <div class="why-inner">
-
-          <div class="section-label">
-
-            <span>05</span>
-            Why TAMOGNA
-
-          </div>
-
-
-          <div class="why-content">
-
-            <div class="mono-text">
-              The difference
-            </div>
-
-
-            <h2>
-
-              GOOD DESIGN
-              <em>
-                ISN'T ENOUGH.
-              </em>
-
-            </h2>
-
-
-            <div class="why-grid">
-
-
-              <article class="why-card">
-
-                <span>
-                  01
-                </span>
-
-                <h3>
-                  Intentional
-                </h3>
-
-                <p>
-                  Every element has a reason to exist. No unnecessary
-                  decoration. No template thinking.
-                </p>
-
-              </article>
-
-
-              <article class="why-card">
-
-                <span>
-                  02
-                </span>
-
-                <h3>
-                  Premium
-                </h3>
-
-                <p>
-                  Strong typography, spacing, hierarchy and details
-                  create a more elevated brand perception.
-                </p>
-
-              </article>
-
-
-              <article class="why-card">
-
-                <span>
-                  03
-                </span>
-
-                <h3>
-                  Built to work
-                </h3>
-
-                <p>
-                  Beautiful design still needs to be responsive,
-                  usable and fast across real devices.
-                </p>
-
-              </article>
-
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         FINAL CTA
-    ========================== -->
-
-    <section class="final-cta">
-
-      <div class="cta-grid"></div>
-
-
-      <div class="section-width final-cta-inner">
-
-        <div class="mono-text">
-          Have a project in mind?
-        </div>
-
+        <p class="gold-label">DINING</p>
 
         <h2>
-
-          LET'S BUILD
-
-          <span>
-            SOMETHING
-          </span>
-
-          <em>
-            MEMORABLE.
-          </em>
-
+          A TABLE
+          <em>WORTH SLOWING</em>
+          <span>DOWN FOR.</span>
         </h2>
 
+        <p>
+          Our kitchen follows the seasons, working
+          with local growers, coastal produce and
+          ingredients chosen at their peak.
+        </p>
 
-        <a href="#contact" class="big-cta">
-
-          Start a conversation
-
-          <span>
-            ↗
-          </span>
-
+        <a href="#contact" class="text-link">
+          Explore dining <span>↗</span>
         </a>
 
       </div>
@@ -1533,71 +519,132 @@
     </section>
 
 
-    <!-- =========================
-         CONTACT
-    ========================== -->
+    <!-- RESERVATION -->
+    <section class="reservation" id="reserve">
 
-    <section class="contact-section" id="contact">
+      <div class="reservation-inner">
 
-      <div class="section-width">
+        <div class="reservation-heading">
+          <p class="gold-label">YOUR STAY BEGINS HERE</p>
 
-        <div class="contact-grid">
+          <h2>
+            FIND YOUR
+            <em>TIME.</em>
+          </h2>
+        </div>
 
 
-          <div class="section-label">
+        <form class="booking-form" id="bookingForm">
 
-            <span>06</span>
-            Contact
+          <label>
+            <span>ARRIVAL</span>
+            <input type="date" id="arrival" required>
+          </label>
 
+          <label>
+            <span>DEPARTURE</span>
+            <input type="date" id="departure" required>
+          </label>
+
+          <label>
+            <span>GUESTS</span>
+            <select id="guests">
+              <option value="1">01 Guest</option>
+              <option value="2" selected>02 Guests</option>
+              <option value="3">03 Guests</option>
+              <option value="4">04 Guests</option>
+              <option value="5">05 Guests</option>
+              <option value="6">06 Guests</option>
+            </select>
+          </label>
+
+          <button type="submit">
+            Check Availability
+            <span>↗</span>
+          </button>
+
+        </form>
+
+        <p class="booking-message" id="bookingMessage"></p>
+
+      </div>
+
+    </section>
+
+
+    <!-- LOCATION -->
+    <section class="location section">
+
+      <div class="section-number">
+        <span>06</span>
+        Find Us
+      </div>
+
+      <div class="location-main">
+
+        <p class="gold-label">THE JOURNEY</p>
+
+        <h2>
+          FAR ENOUGH
+          <em>TO FEEL AWAY.</em>
+        </h2>
+
+        <div class="location-info">
+
+          <div>
+            <small>LOCATION</small>
+            <p>
+              Konkan Coast<br>
+              Maharashtra, India
+            </p>
           </div>
 
-
-          <div class="contact-main">
-
-            <div class="mono-text">
-              Start a project
-            </div>
-
-
-            <h2>
-
-              HAVE AN IDEA?
-
-              <em>
-                LET'S TALK.
-              </em>
-
-            </h2>
-
-
-            <p class="contact-text">
-
-              Tell me what you're building, what you're trying
-              to achieve and where you want to take it.
-
+          <div>
+            <small>FROM THE CITY</small>
+            <p>
+              Approximately<br>
+              3 hrs 40 min
             </p>
+          </div>
 
-
-            <div class="contact-actions">
-
-              <a
-                href="mailto:tamoghna080@gmail.com"
-                class="contact-email"
-              >
-
-                tamoghna080@gmail.com
-
-                <span>
-                  ↗
-                </span>
-
-              </a>
-
-            </div>
-
+          <div>
+            <small>ARRIVAL</small>
+            <p>
+              Private transfer<br>
+              available on request
+            </p>
           </div>
 
         </div>
+
+        <a href="#contact" class="text-link">
+          Plan your journey <span>↗</span>
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- FINAL CTA -->
+    <section class="final-cta" id="contact">
+
+      <div class="final-image"></div>
+      <div class="final-overlay"></div>
+
+      <div class="final-content">
+
+        <p class="gold-label">PRIVATE ENQUIRIES</p>
+
+        <h2>
+          YOUR ROOM
+          <em>IS WAITING.</em>
+        </h2>
+
+        <a href="mailto:reservations@aurelia.example" class="email-link">
+          reservations@aurelia.example
+          <span>↗</span>
+        </a>
 
       </div>
 
@@ -1606,23 +653,22 @@
   </main>
 
 
-  <!-- =========================
-       FOOTER
-  ========================== -->
-
+  <!-- FOOTER -->
   <footer class="footer">
 
-    <span>
-      © 2026 TAMOGNA
-    </span>
+    <div class="footer-brand">
+      <span class="logo-mark">A</span>
+      <strong>AURELIA</strong>
+    </div>
 
-    <span>
-      Founded by Sahil Kokode
-    </span>
+    <div class="footer-nav">
+      <a href="#home">Home</a>
+      <a href="#stay">Stay</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
 
-    <a href="#top">
-      Back to top ↑
-    </a>
+    <span>© 2026 AURELIA RETREAT</span>
 
   </footer>
 
